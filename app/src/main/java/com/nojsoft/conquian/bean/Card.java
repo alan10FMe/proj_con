@@ -5,24 +5,53 @@ package com.nojsoft.conquian.bean;
  */
 public class Card {
 
-    private int position; //Card's position, between 1-40
+    private int id; //Card's position, between 1-40, since it is unique we use it as id
     private String type; // Type of card: Spade, gold, etc. Just the initial is used
     private  int numValue;// Numeric value of the card between 1 and 10
+    private String group;// This is a String code to store the group to which this cards belongs,
+                         // if any, this group is set just for cards on the table.
+
+    /**
+     *
+     * @param group Group of crads to which this one belongs on table
+     */
+    public void setGroup (String group){
+        this.group = group;
+    }
+
+    /**
+     *
+     * @return the group to which this card belongs in the table
+     */
+    public String getGroup (){
+        return group;
+    }
+
+    /**
+     * In order for a card to exists it requires a type a number value, hence there is only one
+     * public constructor and it requires such values
+     * @param numValue Numeric value for the Card object
+     * @param type The type of the card, G = Gold, M = Mazer, etc
+     */
+    public Card (int numValue, String type){
+        this.numValue = numValue;
+        this.type = type;
+    }
 
     /**
      *
      * @return the position of the card, a number between 1-40
      */
-    public int getPosition(){
-        return this.position;
+    public int getId(){
+        return this.id;
     }
 
     /**
      *
-     * @param position Number between 1 and 40, position of the card in the deck
+     * @param id Number between 1 and 40, position of the card in the deck
      */
-    public void setPosition(int position){
-        this.position = position;
+    public void setId(int id){
+        this.id = id;
     }
 
     /**
