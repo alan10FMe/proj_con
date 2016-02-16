@@ -1,11 +1,11 @@
 package com.nojsoft.conquian.bean;
 
-import com.nojsoft.conquian.Constants.CardConstants;
-import com.nojsoft.conquian.Exception.NoMoreCardsException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import com.nojsoft.conquian.constants.CardConstants;
+import com.nojsoft.conquian.exception.NoMoreCardsException;
 
 /**
  * Created by jorge on 11/02/16.
@@ -58,11 +58,13 @@ public class Deck {
      * This method Returns the hand for a player, 8 Cards
      * @return Array with 8 cards
      */
-    public Card [] getHand (){
-        Card [] hand = new Card[8];
+    public Hand getHand (){
+        Card [] handCards = new Card[8];
+        Hand hand = new Hand();
         for(int i= 0; i < 8; i++){
-            hand[i] = cards.remove(0);
+            handCards[i] = cards.remove(0);
         }
+        hand.set(handCards);
         return hand;
     }
 }
