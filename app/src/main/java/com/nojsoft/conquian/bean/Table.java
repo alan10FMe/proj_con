@@ -1,10 +1,15 @@
 package com.nojsoft.conquian.bean;
 
+import android.content.Context;
+import android.widget.ImageView;
+
 /**
  * Created by jorge on 11/02/16.
  */
 public class Table {
     private Card [] cards;//Array with cards, the player can have up to 9 cards
+    private ImageView[] imageCards;//Array with the image representation in the UI for each card
+    private Context context;
 
 
     public Table (){
@@ -41,6 +46,22 @@ public class Table {
             flag = true;
         }
         return flag;
+    }
+
+    public ImageView[] getImageCards() {
+        return imageCards;
+    }
+
+    public void setImageCards(ImageView[] imageCards) {
+        this.imageCards = imageCards;
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 
     /**

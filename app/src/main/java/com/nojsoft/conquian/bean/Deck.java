@@ -17,13 +17,13 @@ public class Deck {
      * The constructor creates the 40 cards, 10 of each type
      */
     public Deck (){
-        cards = new ArrayList<Card>();
-        for (int i = 1; i <= 10; i++){
-            for(String type : CardConstants.types){
-                cards.add(new Card(i,type));
-            }
-        }
-        shuffleCards();
+//        cards = new ArrayList<Card>();
+//        for (int i = 1; i <= 10; i++){
+//            for(String type : CardConstants.types){
+//                cards.add(new Card(i,type));
+//            }
+//        }
+//        shuffleCards();
     }
 
     /**
