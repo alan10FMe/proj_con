@@ -1,5 +1,8 @@
 package com.nojsoft.conquian.bean;
 
+import android.content.Context;
+import android.widget.ImageView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +11,13 @@ import java.util.List;
  */
 public class Hand {
     private Card [] cards;//Array with cards, the player will get 8, the 9th card is the objective
+    private ImageView[] imageCards;//Array with the image representation in the UI for each card
+    private Context context;
+
+    /**
+     * Default constructor
+     */
+    public Hand(){}
 
     /**
      *
@@ -24,6 +34,23 @@ public class Hand {
      */
     public Card[] getCards (){
         return this.cards;
+    }
+
+
+    public ImageView[] getImageCards() {
+        return imageCards;
+    }
+
+    public void setImageCards(ImageView[] imageCards) {
+        this.imageCards = imageCards;
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 
     /**
