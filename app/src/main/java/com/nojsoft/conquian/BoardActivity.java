@@ -1,13 +1,8 @@
 package com.nojsoft.conquian;
 
 import android.content.Context;
-import android.media.Image;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -79,8 +74,7 @@ public class BoardActivity extends AppCompatActivity {
     private Player initializePlayer(int id){
         Player player = new Player();
 
-       // Hand hand = deck.getHand();
-        Hand hand = new Hand();
+        Hand hand = deck.getHand();
         hand.setContext(context);
         LinearLayout linearHand = (LinearLayout)findViewById(getResources().getIdentifier("hand_player_"+id, "id", getPackageName()));
         ImageView[] imagesArray = new ImageView[8];
