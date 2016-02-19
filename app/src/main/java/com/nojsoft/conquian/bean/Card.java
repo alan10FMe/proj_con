@@ -96,7 +96,7 @@ public class Card {
      *         example: 3G is 3Gold, 10S is the King of Spades
      */
     public String getName(){
-        return this.numValue+this.type;
+        return this.type +this.numValue;
     }
 
 }

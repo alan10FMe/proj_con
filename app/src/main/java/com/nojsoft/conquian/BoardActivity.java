@@ -3,6 +3,7 @@ package com.nojsoft.conquian;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -50,7 +51,11 @@ public class BoardActivity extends AppCompatActivity {
     private void takeNextCard(){
         try{
             actualCard = deck.getNextCard();
+//            imgCardPlaying.setImageResource(getResources().getIdentifier(actualCard.getName(), "drawable", getPackageName()));
+            imgCardPlaying.setImageResource(getResources().getIdentifier("s3", "drawable", getPackageName()));
+            Log.e("CARD", actualCard.getName());
         }catch(NoMoreCardsException ex){
+            Log.e("Error", "No more cards");
             //TODO end of game
         }
     }
@@ -110,23 +115,23 @@ public class BoardActivity extends AppCompatActivity {
         //THIS IS JUST FOR TEST that is displaying the cards in the correct position and player
 
         for(int i =0; i < players[0].getHand().getImageCards().length; i++){
-            players[0].getHand().getImageCards()[i].setImageDrawable(getResources().getDrawable(R.drawable.s3));
+            players[0].getHand().getImageCards()[i].setImageResource(R.drawable.s3);
         }
-        for(int i =0; i < players[0].getTable().getImageCards().length; i++){
-            players[0].getTable().getImageCards()[i].setImageDrawable(getResources().getDrawable(R.drawable.s3));
-        }
-        for(int i =0; i < players[1].getHand().getImageCards().length; i++){
-            players[1].getHand().getImageCards()[i].setImageDrawable(getResources().getDrawable(R.drawable.s3));
-        }
-        for(int i =0; i < players[1].getTable().getImageCards().length; i++){
-            players[1].getTable().getImageCards()[i].setImageDrawable(getResources().getDrawable(R.drawable.s3));
-        }
-        for(int i =0; i < players[2].getHand().getImageCards().length; i++){
-            players[2].getHand().getImageCards()[i].setImageDrawable(getResources().getDrawable(R.drawable.s3));
-        }
-        for(int i =0; i < players[2].getTable().getImageCards().length; i++){
-            players[2].getTable().getImageCards()[i].setImageDrawable(getResources().getDrawable(R.drawable.s3));
-        }
+//        for(int i =0; i < players[0].getTable().getImageCards().length; i++){
+//            players[0].getTable().getImageCards()[i].setImageDrawable(getResources().getDrawable(R.drawable.s3));
+//        }
+//        for(int i =0; i < players[1].getHand().getImageCards().length; i++){
+//            players[1].getHand().getImageCards()[i].setImageDrawable(getResources().getDrawable(R.drawable.s3));
+//        }
+//        for(int i =0; i < players[1].getTable().getImageCards().length; i++){
+//            players[1].getTable().getImageCards()[i].setImageDrawable(getResources().getDrawable(R.drawable.s3));
+//        }
+//        for(int i =0; i < players[2].getHand().getImageCards().length; i++){
+//            players[2].getHand().getImageCards()[i].setImageDrawable(getResources().getDrawable(R.drawable.s3));
+//        }
+//        for(int i =0; i < players[2].getTable().getImageCards().length; i++){
+//            players[2].getTable().getImageCards()[i].setImageDrawable(getResources().getDrawable(R.drawable.s3));
+//        }
 
     }
 
