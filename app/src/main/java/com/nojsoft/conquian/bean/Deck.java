@@ -33,12 +33,16 @@ public class Deck {
         List <Card> shuffledCards = new ArrayList<Card>();
         int randnumber = -1;
         int id=1;
+        int upperLimit = 40;
         Card card = null;
         while(cards.size()>0){
-            randnumber = (int)Math.floor(Math.random()*40+1);
-            card = cards.remove(randnumber);
-            card.setId(id++);
-            shuffledCards.add(card);
+            randnumber = (int)Math.floor(Math.random()*upperLimit);
+            if(randnumber>=0&&randnumber<cards.size()) {
+                card = cards.remove(randnumber);
+                card.setId(id++);
+                shuffledCards.add(card);
+                upperLimit--;
+            }
         }
         cards = shuffledCards;
     }
