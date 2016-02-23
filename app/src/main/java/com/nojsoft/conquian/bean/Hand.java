@@ -1,7 +1,9 @@
 package com.nojsoft.conquian.bean;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +15,24 @@ public class Hand {
     private Card [] cards;//Array with cards, the player will get 8, the 9th card is the objective
     private ImageView[] imageCards;//Array with the image representation in the UI for each card
     private Context context;
+    private int id;
 
     /**
      * Default constructor
      */
     public Hand(){}
+
+    public void initializeHand(Context context, int id){
+        this.context = context;
+        this.id = id;
+        LinearLayout linearHand = (LinearLayout)((Activity)context).findViewById(context.getResources().getIdentifier("hand_player_"+id, "id", context.getPackageName()));
+        imageCards = new ImageView[8];
+        for(int i=0; i < linearHand.getChildCount(); i++){
+            if(linearHand.getChildAt(i) instanceof ImageView){
+                imageCards[i] = (ImageView)linearHand.getChildAt(i);
+            }
+        }
+    }
 
     /**
      *
@@ -113,5 +128,11 @@ public class Hand {
                 position = i;
         }
         return position;
+    }
+
+    public void transformCardsToViews(){
+        for(int i = 0; i < cards.length; i++){
+            imageCards[i].setImageResource(context.getResources().getIdentifier(cards[i].getName(), "drawable", context.getPackageName()));
+        }
     }
 }

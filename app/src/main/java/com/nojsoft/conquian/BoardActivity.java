@@ -1,10 +1,15 @@
 package com.nojsoft.conquian;
 
+import android.content.ClipData;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.DragEvent;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,7 +22,7 @@ import com.nojsoft.conquian.bean.Table;
 import com.nojsoft.conquian.exception.NoMoreCardsException;
 
 
-public class BoardActivity extends AppCompatActivity {
+public class BoardActivity extends AppCompatActivity implements View.OnTouchListener, View.OnDragListener, View.OnClickListener {
 
     private ImageButton btnDeck;
     private ImageView imgCardPlaying;
@@ -34,15 +39,15 @@ public class BoardActivity extends AppCompatActivity {
         context = this;
         deck = new Deck();
         btnDeck = (ImageButton)findViewById(R.id.btn_deck);
-        btnDeck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                takeNextCard();
-            }
-        });
         imgCardPlaying = (ImageView)findViewById(R.id.img_card_playing);
         initializePlayers();
         displayCards();
+        startTurnPlayer();
+    }
+
+    private void startTurnPlayer(){
+        btnDeck.setOnClickListener(this);
+
     }
 
     /**
@@ -51,9 +56,8 @@ public class BoardActivity extends AppCompatActivity {
     private void takeNextCard(){
         try{
             actualCard = deck.getNextCard();
-//            imgCardPlaying.setImageResource(getResources().getIdentifier(actualCard.getName(), "drawable", getPackageName()));
-            imgCardPlaying.setImageResource(getResources().getIdentifier("s3", "drawable", getPackageName()));
-            Log.e("CARD", actualCard.getName());
+            imgCardPlaying.setImageResource(getResources().getIdentifier(actualCard.getName(), "drawable", getPackageName()));
+            imgCardPlaying.setOnTouchListener(this);
         }catch(NoMoreCardsException ex){
             Log.e("Error", "No more cards");
             //TODO end of game
@@ -78,31 +82,10 @@ public class BoardActivity extends AppCompatActivity {
      */
     private Player initializePlayer(int id){
         Player player = new Player();
-
+        player.setTable(new Table(context, id));
         Hand hand = deck.getHand();
-        hand.setContext(context);
-        LinearLayout linearHand = (LinearLayout)findViewById(getResources().getIdentifier("hand_player_"+id, "id", getPackageName()));
-        ImageView[] imagesArray = new ImageView[8];
-        for(int i=0; i < linearHand.getChildCount(); i++){
-            if(linearHand.getChildAt(i) instanceof ImageView){
-                imagesArray[i] = (ImageView)linearHand.getChildAt(i);
-            }
-        }
-        hand.setImageCards(imagesArray);
+        hand.initializeHand(context, id);
         player.setHand(hand);
-
-        Table table = new Table();
-        table.setContext(context);
-        linearHand = (LinearLayout)findViewById(getResources().getIdentifier("game_player_" + id, "id", getPackageName()));
-        imagesArray = new ImageView[9];
-        for(int i=0; i < linearHand.getChildCount(); i++){
-            if(linearHand.getChildAt(i) instanceof ImageView){
-                imagesArray[i] = (ImageView)linearHand.getChildAt(i);
-            }
-        }
-        table.setImageCards(imagesArray);
-        player.setTable(table);
-
         return player;
     }
 
@@ -111,28 +94,68 @@ public class BoardActivity extends AppCompatActivity {
      * Method to display in the UI the cards
      */
     private void displayCards(){
-
-        //THIS IS JUST FOR TEST that is displaying the cards in the correct position and player
-
-        for(int i =0; i < players[0].getHand().getImageCards().length; i++){
-            players[0].getHand().getImageCards()[i].setImageResource(R.drawable.s3);
+        for(int i = 0; i < numberPlayers; i++){
+            players[i].getHand().transformCardsToViews();
         }
-//        for(int i =0; i < players[0].getTable().getImageCards().length; i++){
-//            players[0].getTable().getImageCards()[i].setImageDrawable(getResources().getDrawable(R.drawable.s3));
-//        }
-//        for(int i =0; i < players[1].getHand().getImageCards().length; i++){
-//            players[1].getHand().getImageCards()[i].setImageDrawable(getResources().getDrawable(R.drawable.s3));
-//        }
-//        for(int i =0; i < players[1].getTable().getImageCards().length; i++){
-//            players[1].getTable().getImageCards()[i].setImageDrawable(getResources().getDrawable(R.drawable.s3));
-//        }
-//        for(int i =0; i < players[2].getHand().getImageCards().length; i++){
-//            players[2].getHand().getImageCards()[i].setImageDrawable(getResources().getDrawable(R.drawable.s3));
-//        }
-//        for(int i =0; i < players[2].getTable().getImageCards().length; i++){
-//            players[2].getTable().getImageCards()[i].setImageDrawable(getResources().getDrawable(R.drawable.s3));
-//        }
 
     }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.btn_deck:{
+                takeNextCard();
+                break;
+            }
+        }
+
+    }
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            ClipData data = ClipData.newPlainText("", "");
+            View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+            view.startDrag(data, shadowBuilder, view, 0);
+            view.setVisibility(View.INVISIBLE);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean onDrag(View v, DragEvent event) {
+        Drawable enterShape = getResources().getDrawable(R.drawable.s3);
+        Drawable normalShape = getResources().getDrawable(R.drawable.s3);
+
+        int action = event.getAction();
+        switch (event.getAction()) {
+            case DragEvent.ACTION_DRAG_STARTED:
+                // do nothing
+                break;
+            case DragEvent.ACTION_DRAG_ENTERED:
+                v.setBackgroundDrawable(enterShape);
+                break;
+            case DragEvent.ACTION_DRAG_EXITED:
+                v.setBackgroundDrawable(normalShape);
+                break;
+            case DragEvent.ACTION_DROP:
+                // Dropped, reassign View to ViewGroup
+                View view = (View) event.getLocalState();
+                ViewGroup owner = (ViewGroup) view.getParent();
+                owner.removeView(view);
+                LinearLayout container = (LinearLayout) v;
+                container.addView(view);
+                view.setVisibility(View.VISIBLE);
+                break;
+            case DragEvent.ACTION_DRAG_ENDED:
+                v.setBackgroundDrawable(normalShape);
+            default:
+                break;
+        }
+        return true;
+    }
+
 
 }

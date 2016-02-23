@@ -1,19 +1,37 @@
 package com.nojsoft.conquian.bean;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+
+import com.nojsoft.conquian.R;
 
 /**
  * Created by jorge on 11/02/16.
  */
 public class Table {
+
     private Card [] cards;//Array with cards, the player can have up to 9 cards
     private ImageView[] imageCards;//Array with the image representation in the UI for each card
     private Context context;
+    private int id;
 
 
-    public Table (){
+    private Table (){
+    }
+
+    public Table(Context context, int id){
+        this.context = context;
+        this.id = id;
         this.cards = new Card[9];
+        LinearLayout linearHand = (LinearLayout) (((Activity)context).findViewById(context.getResources().getIdentifier("game_player_" + id, "id", context.getPackageName())));
+        imageCards = new ImageView[9];
+        for(int i=0; i < linearHand.getChildCount(); i++){
+            if(linearHand.getChildAt(i) instanceof ImageView){
+                imageCards[i] = (ImageView)linearHand.getChildAt(i);
+            }
+        }
     }
 
     /**
@@ -90,5 +108,11 @@ public class Table {
                 position = i;
         }
         return position;
+    }
+
+    public void transformCardsToViews(){
+        for(int i = 0; i < cards.length; i++){
+            imageCards[0].setImageResource(context.getResources().getIdentifier(cards[i].getName(), "drawable", context.getPackageName()));
+        }
     }
 }
