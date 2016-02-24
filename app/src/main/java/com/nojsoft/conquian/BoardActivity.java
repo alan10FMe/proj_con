@@ -28,6 +28,7 @@ public class BoardActivity extends AppCompatActivity implements View.OnTouchList
     private ImageView imgCardPlaying;
     private Player[] players;
     int numberPlayers = 3;
+    int myPlayerId = 0;
     private Deck deck;
     private Card actualCard;
     private Context context;
@@ -47,7 +48,12 @@ public class BoardActivity extends AppCompatActivity implements View.OnTouchList
 
     private void startTurnPlayer(){
         btnDeck.setOnClickListener(this);
+        players[myPlayerId].enableDD();
 
+    }
+
+    private void endTurnPlayer(){
+        players[myPlayerId].disableDD();
     }
 
     /**
@@ -117,7 +123,7 @@ public class BoardActivity extends AppCompatActivity implements View.OnTouchList
             ClipData data = ClipData.newPlainText("", "");
             View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
             view.startDrag(data, shadowBuilder, view, 0);
-            view.setVisibility(View.INVISIBLE);
+            //view.setVisibility(View.INVISIBLE);
             return true;
         } else {
             return false;
@@ -126,8 +132,8 @@ public class BoardActivity extends AppCompatActivity implements View.OnTouchList
 
     @Override
     public boolean onDrag(View v, DragEvent event) {
-        Drawable enterShape = getResources().getDrawable(R.drawable.s3);
-        Drawable normalShape = getResources().getDrawable(R.drawable.s3);
+        Drawable enterShape = getResources().getDrawable(R.drawable.background_active);
+        Drawable normalShape = getResources().getDrawable(R.drawable.background);
 
         int action = event.getAction();
         switch (event.getAction()) {

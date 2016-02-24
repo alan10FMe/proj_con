@@ -41,4 +41,14 @@ public class Player {
     public void setIsComputer(boolean isComputer) {
         this.isComputer = isComputer;
     }
+
+    public void enableDD() {
+        this.hand.enableDD();
+        this.table.enableDD();
+    }
+
+    public void disableDD() {
+        this.hand.disableDD();
+        this.table.disableDD();
+    }
 }

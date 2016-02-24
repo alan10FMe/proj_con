@@ -24,61 +24,21 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerTwoHand" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerTwoHand" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerTwoHand" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerTwoHand" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerTwoHand" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerTwoHand" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerTwoHand" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerTwoHand" />
 
         </LinearLayout>
 
@@ -92,68 +52,23 @@
             android:orientation="vertical">
 
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerTwoGame" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerTwoGame" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerTwoGame" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerTwoGame" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerTwoGame" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerTwoGame" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerTwoGame" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerTwoGame" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerTwoGame" />
 
         </LinearLayout>
 
@@ -187,13 +102,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:background="#ffffff">
+                android:gravity="center">
 
-            <ImageView
-                android:id="@+id/img_card_playing"
-                android:layout_width="60dp"
-                android:layout_height="100dp" />
+                <ImageView
+                    android:id="@+id/img_card_playing"
+                    android:layout_width="60dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/background" />
             </LinearLayout>
 
 
@@ -217,68 +132,23 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#ffffff" />
+                <ImageView style="@style/PlayerGame" />
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#ffffff" />
+                <ImageView style="@style/PlayerGame" />
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#ffffff" />
+                <ImageView style="@style/PlayerGame" />
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#ffffff" />
+                <ImageView style="@style/PlayerGame" />
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#ffffff" />
+                <ImageView style="@style/PlayerGame" />
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#ffffff" />
+                <ImageView style="@style/PlayerGame" />
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#ffffff" />
+                <ImageView style="@style/PlayerGame" />
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#ffffff" />
+                <ImageView style="@style/PlayerGame" />
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#ffffff" />
+                <ImageView style="@style/PlayerGame" />
 
 
             </LinearLayout>
@@ -293,61 +163,22 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#ffffff" />
+                <ImageView style="@style/PlayerHand" />
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#ffffff" />
+                <ImageView style="@style/PlayerHand" />
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#ffffff" />
+                <ImageView style="@style/PlayerHand" />
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#ffffff" />
+                <ImageView style="@style/PlayerHand" />
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#ffffff" />
+                <ImageView style="@style/PlayerHand" />
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#ffffff" />
+                <ImageView style="@style/PlayerHand" />
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#ffffff" />
+                <ImageView style="@style/PlayerHand" />
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#ffffff" />
+                <ImageView style="@style/PlayerHand" />
+
             </LinearLayout>
 
 
@@ -373,68 +204,23 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerOneGame" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerOneGame" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerOneGame" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerOneGame" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerOneGame" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerOneGame" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerOneGame" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerOneGame" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerOneGame" />
 
         </LinearLayout>
 
@@ -447,61 +233,21 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerOneHand" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerOneHand" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerOneHand" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerOneHand" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerOneHand" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerOneHand" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerOneHand" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff" />
+            <ImageView style="@style/ComputerOneHand" />
         </LinearLayout>
     </LinearLayout>
 

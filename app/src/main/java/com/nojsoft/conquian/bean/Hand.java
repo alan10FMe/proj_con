@@ -2,8 +2,11 @@ package com.nojsoft.conquian.bean;
 
 import android.app.Activity;
 import android.content.Context;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import com.nojsoft.conquian.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -133,6 +136,26 @@ public class Hand {
     public void transformCardsToViews(){
         for(int i = 0; i < cards.length; i++){
             imageCards[i].setImageResource(context.getResources().getIdentifier(cards[i].getName(), "drawable", context.getPackageName()));
+            imageCards[i].setTag(cards[i].getName());
+        }
+    }
+
+    public void enableDD() {
+        if (context instanceof View.OnDragListener && context instanceof View.OnTouchListener) {
+            for (int i = 0; i < imageCards.length; i++) {
+                if(imageCards[i].getTag().equals(context.getString(R.string.background_tag))){
+                    imageCards[i].setOnDragListener((View.OnDragListener) context);
+                }else {
+                    imageCards[i].setOnTouchListener((View.OnTouchListener) context);
+                }
+            }
+        }
+    }
+
+    public void disableDD() {
+        for (int i = 0; i < imageCards.length; i++) {
+            imageCards[i].setOnTouchListener(null);
+            imageCards[i].setOnDragListener(null);
         }
     }
 }
