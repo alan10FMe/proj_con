@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="custom_image_view">
+        <attr name="name_card" format="string" />
+        <attr name="position" format="integer" />
+        <attr name="previous_position" format="integer" />
+        <attr name="group" format="string" />
+        <attr name="previous_group" format="string" />
+
+    </declare-styleable>
+
+</resources>

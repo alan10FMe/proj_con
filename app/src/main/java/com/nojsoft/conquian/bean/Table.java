@@ -3,10 +3,10 @@ package com.nojsoft.conquian.bean;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.nojsoft.conquian.R;
+import com.nojsoft.conquian.views.CardView;
 
 /**
  * Created by jorge on 11/02/16.
@@ -14,7 +14,7 @@ import com.nojsoft.conquian.R;
 public class Table {
 
     private Card [] cards;//Array with cards, the player can have up to 9 cards
-    private ImageView[] imageCards;//Array with the image representation in the UI for each card
+    private CardView[] imageCards;//Array with the image representation in the UI for each card
     private Context context;
     private int id;
 
@@ -27,10 +27,10 @@ public class Table {
         this.id = id;
         this.cards = new Card[9];
         LinearLayout linearHand = (LinearLayout) (((Activity)context).findViewById(context.getResources().getIdentifier("game_player_" + id, "id", context.getPackageName())));
-        imageCards = new ImageView[9];
+        imageCards = new CardView[9];
         for(int i=0; i < linearHand.getChildCount(); i++){
-            if(linearHand.getChildAt(i) instanceof ImageView){
-                imageCards[i] = (ImageView)linearHand.getChildAt(i);
+            if(linearHand.getChildAt(i) instanceof CardView){
+                imageCards[i] = (CardView)linearHand.getChildAt(i);
             }
         }
     }
@@ -67,11 +67,11 @@ public class Table {
         return flag;
     }
 
-    public ImageView[] getImageCards() {
+    public CardView[] getImageCards() {
         return imageCards;
     }
 
-    public void setImageCards(ImageView[] imageCards) {
+    public void setImageCards(CardView[] imageCards) {
         this.imageCards = imageCards;
     }
 
@@ -114,25 +114,34 @@ public class Table {
     public void transformCardsToViews(){
         for(int i = 0; i < cards.length; i++){
             imageCards[i].setImageResource(context.getResources().getIdentifier(cards[i].getName(), "drawable", context.getPackageName()));
-            imageCards[i].setTag(cards[i].getName());
+//            imageCards[i].setTag(cards[i].getName());
         }
     }
 
-    public void enableDD() {
-        if (context instanceof View.OnDragListener && context instanceof View.OnTouchListener) {
+    public void enableDrop() {
+        if (context instanceof View.OnDragListener) {
             for (int i = 0; i < imageCards.length; i++) {
-                if(imageCards[i].getTag().equals(context.getString(R.string.background_tag))){
-                    imageCards[i].setOnDragListener((View.OnDragListener) context);
-                }else {
-                    imageCards[i].setOnTouchListener((View.OnTouchListener) context);
-                }
+                imageCards[i].setOnDragListener((View.OnDragListener) context);
             }
         }
     }
 
-    public void disableDD() {
+    public void enableDrag() {
+        if (context instanceof View.OnTouchListener) {
+            for (int i = 0; i < imageCards.length; i++) {
+                imageCards[i].setOnTouchListener((View.OnTouchListener) context);
+            }
+        }
+    }
+
+    public void disableDrag() {
         for (int i = 0; i < imageCards.length; i++) {
             imageCards[i].setOnTouchListener(null);
+        }
+    }
+
+    public void disableDrop() {
+        for (int i = 0; i < imageCards.length; i++) {
             imageCards[i].setOnDragListener(null);
         }
     }

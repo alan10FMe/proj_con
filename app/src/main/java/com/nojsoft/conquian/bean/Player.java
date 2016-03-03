@@ -43,12 +43,16 @@ public class Player {
     }
 
     public void enableDD() {
-        this.hand.enableDD();
-        this.table.enableDD();
+        this.hand.enableDrag();
+        this.hand.enableDrop();
+        this.table.enableDrop();
+        this.table.enableDrag();
     }
 
     public void disableDD() {
-        this.hand.disableDD();
-        this.table.disableDD();
+        this.hand.disableDrag();
+        this.table.disableDrop();
+        this.table.disableDrag();
+        this.hand.disableDrop();
     }
 }

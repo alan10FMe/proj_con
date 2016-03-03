@@ -1,12 +1,13 @@
 <resources>
+
     <string name="app_name">Conquian</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_board">BoardActivity</string>
 
-
-    <string name="background_tag">background</string>
-
+    <string name="tag_game">game_card</string>
+    <string name="tag_hand">hand_card</string>
+    <string name="tag_board">board_card</string>
 
 </resources>

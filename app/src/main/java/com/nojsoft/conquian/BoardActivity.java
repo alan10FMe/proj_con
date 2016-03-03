@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.nojsoft.conquian.bean.Card;
 import com.nojsoft.conquian.bean.Deck;
@@ -123,6 +124,14 @@ public class BoardActivity extends AppCompatActivity implements View.OnTouchList
             ClipData data = ClipData.newPlainText("", "");
             View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
             view.startDrag(data, shadowBuilder, view, 0);
+
+//            if(view.getTag().equals(getString(R.string.tag_game))) {
+//                Toast.makeText(this, "GAME" , Toast.LENGTH_SHORT).show();
+//            } else if(view.getTag().equals(getString(R.string.tag_hand))) {
+//                Toast.makeText(this, "HAND" , Toast.LENGTH_SHORT).show();
+//            } else if(view.getTag().equals(getString(R.string.tag_board))) {
+//                Toast.makeText(this, "BOARD" , Toast.LENGTH_SHORT).show();
+//            }
             //view.setVisibility(View.INVISIBLE);
             return true;
         } else {
