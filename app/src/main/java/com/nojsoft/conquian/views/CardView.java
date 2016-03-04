@@ -57,7 +57,7 @@ public class CardView extends ImageView{
         a.recycle();
     }
 
-    public CardView (Context context, int numValue, String type) {
+    public CardView (Context context, int numValue, String type, int id) {
         super(context, null);
         this.numValue = numValue;
         this.type = type;
