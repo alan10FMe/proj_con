@@ -3,7 +3,6 @@ package com.nojsoft.conquian.views;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.widget.ImageView;
 
 import com.nojsoft.conquian.R;
@@ -21,7 +20,7 @@ public class CardView extends ImageView{
     private Integer position;
     private Integer previousPosition;
     private String location;
-    private String previousGroup;
+    private String previousLocation;
 
     public CardView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -39,7 +38,7 @@ public class CardView extends ImageView{
 
         s = a.getString(R.styleable.custom_image_view_previous_group);
         if (s != null) {
-            this.setPreviousGroup(s.toString());
+            this.setPreviousLocation(s.toString());
         }
 
         s = a.getString(R.styleable.custom_image_view_position);
@@ -96,12 +95,12 @@ public class CardView extends ImageView{
         this.location = group;
     }
 
-    public String getPreviousGroup() {
-        return previousGroup;
+    public String getPreviousLocation() {
+        return previousLocation;
     }
 
-    public void setPreviousGroup(String previousGroup) {
-        this.previousGroup = previousGroup;
+    public void setPreviousLocation(String previousLocation) {
+        this.previousLocation = previousLocation;
     }
 
     /**

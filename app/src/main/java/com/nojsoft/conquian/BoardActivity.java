@@ -15,12 +15,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.nojsoft.conquian.bean.Card;
 import com.nojsoft.conquian.bean.Deck;
 import com.nojsoft.conquian.bean.Hand;
 import com.nojsoft.conquian.bean.Player;
 import com.nojsoft.conquian.bean.Table;
 import com.nojsoft.conquian.exception.NoMoreCardsException;
+import com.nojsoft.conquian.views.CardView;
 
 
 public class BoardActivity extends AppCompatActivity implements View.OnTouchListener, View.OnDragListener, View.OnClickListener {
@@ -31,7 +31,7 @@ public class BoardActivity extends AppCompatActivity implements View.OnTouchList
     int numberPlayers = 3;
     int myPlayerId = 0;
     private Deck deck;
-    private Card actualCard;
+    private CardView actualCard;
     private Context context;
 
     @Override
@@ -62,7 +62,7 @@ public class BoardActivity extends AppCompatActivity implements View.OnTouchList
      */
     private void takeNextCard(){
         try{
-            actualCard = deck.getNextCard();
+//            actualCard = deck.getNextCard();
             imgCardPlaying.setImageResource(getResources().getIdentifier(actualCard.getName(), "drawable", getPackageName()));
             imgCardPlaying.setOnTouchListener(this);
         }catch(NoMoreCardsException ex){
@@ -102,7 +102,7 @@ public class BoardActivity extends AppCompatActivity implements View.OnTouchList
      */
     private void displayCards(){
         for(int i = 0; i < numberPlayers; i++){
-            players[i].getHand().transformCardsToViews();
+//            players[i].getHand().transformCardsToViews();
         }
 
     }
@@ -124,6 +124,7 @@ public class BoardActivity extends AppCompatActivity implements View.OnTouchList
             ClipData data = ClipData.newPlainText("", "");
             View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
             view.startDrag(data, shadowBuilder, view, 0);
+
 
 //            if(view.getTag().equals(getString(R.string.tag_game))) {
 //                Toast.makeText(this, "GAME" , Toast.LENGTH_SHORT).show();

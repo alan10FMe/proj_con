@@ -13,8 +13,7 @@ import com.nojsoft.conquian.views.CardView;
  */
 public class Table {
 
-    private Card [] cards;//Array with cards, the player can have up to 9 cards
-    private CardView[] imageCards;//Array with the image representation in the UI for each card
+    private CardView [] cards;//Array with cards, the player can have up to 9 cards
     private Context context;
     private int id;
 
@@ -25,21 +24,13 @@ public class Table {
     public Table(Context context, int id){
         this.context = context;
         this.id = id;
-        this.cards = new Card[9];
-        LinearLayout linearHand = (LinearLayout) (((Activity)context).findViewById(context.getResources().getIdentifier("game_player_" + id, "id", context.getPackageName())));
-        imageCards = new CardView[9];
-        for(int i=0; i < linearHand.getChildCount(); i++){
-            if(linearHand.getChildAt(i) instanceof CardView){
-                imageCards[i] = (CardView)linearHand.getChildAt(i);
-            }
-        }
     }
 
     /**
      *
      * @param cards Array of Card objects, the cards the user has in the table
      */
-    public  void set (Card [] cards ){
+    public  void set (CardView [] cards ){
         this.cards = cards;
     }
 
@@ -48,7 +39,7 @@ public class Table {
      *
      * @return Array of Card objects, the cards the user has in the table
      */
-    public Card[] getCards (){
+    public CardView[] getCards (){
         return this.cards;
     }
 
@@ -58,29 +49,13 @@ public class Table {
      * @param tablePosition the position to set the card
      * @return true if the card was set, false if the place was not empty
      */
-    public boolean setCard (Card card, int tablePosition){
+    public boolean setCard (CardView card, int tablePosition){
         boolean flag = false;
         if(cards[tablePosition] == null){
             cards[tablePosition] = card;
             flag = true;
         }
         return flag;
-    }
-
-    public CardView[] getImageCards() {
-        return imageCards;
-    }
-
-    public void setImageCards(CardView[] imageCards) {
-        this.imageCards = imageCards;
-    }
-
-    public Context getContext() {
-        return context;
-    }
-
-    public void setContext(Context context) {
-        this.context = context;
     }
 
     /**
@@ -90,7 +65,7 @@ public class Table {
      */
     public void changePosition (int currentPos, int futurePos){
         boolean changed =false;
-        Card holder = cards[currentPos];
+        CardView holder = cards[currentPos];
         cards[currentPos] = cards[futurePos];
         cards[futurePos] = holder;
     }
@@ -102,7 +77,7 @@ public class Table {
      */
     public int getHandPosition (int id){
         int position = -1;
-        Card card;
+        CardView card;
         for(int i = 0; i < cards.length; i++){
             card = cards [i];
             if(card.getId() == id)
@@ -111,38 +86,32 @@ public class Table {
         return position;
     }
 
-    public void transformCardsToViews(){
-        for(int i = 0; i < cards.length; i++){
-            imageCards[i].setImageResource(context.getResources().getIdentifier(cards[i].getName(), "drawable", context.getPackageName()));
-//            imageCards[i].setTag(cards[i].getName());
-        }
-    }
 
     public void enableDrop() {
         if (context instanceof View.OnDragListener) {
-            for (int i = 0; i < imageCards.length; i++) {
-                imageCards[i].setOnDragListener((View.OnDragListener) context);
+            for (int i = 0; i < cards.length; i++) {
+                cards[i].setOnDragListener((View.OnDragListener) context);
             }
         }
     }
 
     public void enableDrag() {
         if (context instanceof View.OnTouchListener) {
-            for (int i = 0; i < imageCards.length; i++) {
-                imageCards[i].setOnTouchListener((View.OnTouchListener) context);
+            for (int i = 0; i < cards.length; i++) {
+                cards[i].setOnTouchListener((View.OnTouchListener) context);
             }
         }
     }
 
     public void disableDrag() {
-        for (int i = 0; i < imageCards.length; i++) {
-            imageCards[i].setOnTouchListener(null);
+        for (int i = 0; i < cards.length; i++) {
+            cards[i].setOnTouchListener(null);
         }
     }
 
     public void disableDrop() {
-        for (int i = 0; i < imageCards.length; i++) {
-            imageCards[i].setOnDragListener(null);
+        for (int i = 0; i < cards.length; i++) {
+            cards[i].setOnDragListener(null);
         }
     }
 }

@@ -15,8 +15,7 @@ import java.util.List;
  * Created by jorge on 11/02/16.
  */
 public class Hand {
-    private Card [] cards;//Array with cards, the player will get 8, the 9th card is the objective
-    private CardView[] imageCards;//Array with the image representation in the UI for each card
+    private CardView [] cards;//Array with cards, the player will get 8, the 9th card is the objective
     private Context context;
     private int id;
 
@@ -28,20 +27,13 @@ public class Hand {
     public void initializeHand(Context context, int id){
         this.context = context;
         this.id = id;
-        LinearLayout linearHand = (LinearLayout)((Activity)context).findViewById(context.getResources().getIdentifier("hand_player_"+id, "id", context.getPackageName()));
-        imageCards = new CardView[8];
-        for(int i=0; i < linearHand.getChildCount(); i++){
-            if(linearHand.getChildAt(i) instanceof CardView){
-                imageCards[i] = (CardView)linearHand.getChildAt(i);
-            }
-        }
     }
 
     /**
      *
      * @param cards Array of Card objects, the cards the user has in his/her hand
      */
-    public  void set (Card [] cards ){
+    public  void set (CardView [] cards ){
         this.cards = cards;
     }
 
@@ -50,25 +42,8 @@ public class Hand {
      *
      * @return Array of Card objects, the cards the user has in his/her hand
      */
-    public Card[] getCards (){
+    public CardView[] getCards (){
         return this.cards;
-    }
-
-
-    public CardView[] getImageCards() {
-        return imageCards;
-    }
-
-    public void setImageCards(CardView[] imageCards) {
-        this.imageCards = imageCards;
-    }
-
-    public Context getContext() {
-        return context;
-    }
-
-    public void setContext(Context context) {
-        this.context = context;
     }
 
     /**
@@ -78,13 +53,13 @@ public class Hand {
      *                  unique it can be used as identifier.
      * @return null if the size of the position's list is 0 or no coincidences were found
      */
-    public Card [] dropCard (int [] ids){
-        Card [] droppedCards = null;
+    public CardView [] dropCard (int [] ids){
+        CardView [] droppedCards = null;
         int position = 0;
         if (ids!= null && ids.length>0) {
-            droppedCards = new Card[ids.length];
+            droppedCards = new CardView[ids.length];
             for (int id : ids) {
-                for (Card card : cards) {
+                for (CardView card : cards) {
                     if (card.getId() == id) {
                         droppedCards[position++]=card;
                     }
@@ -92,7 +67,7 @@ public class Hand {
             }
 
             if(position>0){
-                for(Card dropped: droppedCards){
+                for(CardView dropped: droppedCards){
                     for(int i = 0; i< cards.length; i++){
                         if(cards[i]==dropped)
                             cards[i]=null;
@@ -112,7 +87,7 @@ public class Hand {
      */
     public void changePosition (int currentPos, int futurePos){
         boolean changed =false;
-        Card holder = cards[currentPos];
+        CardView holder = cards[currentPos];
         cards[currentPos] = cards[futurePos];
         cards[futurePos] = holder;
     }
@@ -124,7 +99,7 @@ public class Hand {
      */
     public int getHandPosition (int id){
         int position = -1;
-        Card card;
+        CardView card;
         for(int i = 0; i < cards.length; i++){
             card = cards [i];
             if(card.getId() == id)
@@ -133,38 +108,32 @@ public class Hand {
         return position;
     }
 
-    public void transformCardsToViews(){
-        for(int i = 0; i < cards.length; i++){
-            imageCards[i].setImageResource(context.getResources().getIdentifier(cards[i].getName(), "drawable", context.getPackageName()));
-//            imageCards[i].setTag(cards[i].getName());
-        }
-    }
 
     public void enableDrop() {
         if (context instanceof View.OnDragListener) {
-            for (int i = 0; i < imageCards.length; i++) {
-                imageCards[i].setOnDragListener((View.OnDragListener) context);
+            for (int i = 0; i < cards.length; i++) {
+                cards[i].setOnDragListener((View.OnDragListener) context);
             }
         }
     }
 
     public void enableDrag() {
         if (context instanceof View.OnTouchListener) {
-            for (int i = 0; i < imageCards.length; i++) {
-                imageCards[i].setOnTouchListener((View.OnTouchListener) context);
+            for (int i = 0; i < cards.length; i++) {
+                cards[i].setOnTouchListener((View.OnTouchListener) context);
             }
         }
     }
 
     public void disableDrag() {
-        for (int i = 0; i < imageCards.length; i++) {
-            imageCards[i].setOnTouchListener(null);
+        for (int i = 0; i < cards.length; i++) {
+            cards[i].setOnTouchListener(null);
         }
     }
 
     public void disableDrop() {
-        for (int i = 0; i < imageCards.length; i++) {
-            imageCards[i].setOnDragListener(null);
+        for (int i = 0; i < cards.length; i++) {
+            cards[i].setOnDragListener(null);
         }
     }
 }
