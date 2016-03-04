@@ -39,12 +39,12 @@ public class BoardActivity extends AppCompatActivity implements View.OnTouchList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
         context = this;
-        deck = new Deck();
-        btnDeck = (ImageButton)findViewById(R.id.btn_deck);
-        imgCardPlaying = (ImageView)findViewById(R.id.img_card_playing);
-        initializePlayers();
-        displayCards();
-        startTurnPlayer();
+//        deck = new Deck();
+//        btnDeck = (ImageButton)findViewById(R.id.btn_deck);
+//        imgCardPlaying = (ImageView)findViewById(R.id.img_card_playing);
+//        initializePlayers();
+//        displayCards();
+//        startTurnPlayer();
     }
 
     private void startTurnPlayer(){
@@ -61,14 +61,14 @@ public class BoardActivity extends AppCompatActivity implements View.OnTouchList
      * Method to get the next card from the deck
      */
     private void takeNextCard(){
-        try{
-//            actualCard = deck.getNextCard();
-            imgCardPlaying.setImageResource(getResources().getIdentifier(actualCard.getName(), "drawable", getPackageName()));
-            imgCardPlaying.setOnTouchListener(this);
-        }catch(NoMoreCardsException ex){
-            Log.e("Error", "No more cards");
-            //TODO end of game
-        }
+//        try{
+////            actualCard = deck.getNextCard();
+//            imgCardPlaying.setImageResource(getResources().getIdentifier(actualCard.getName(), "drawable", getPackageName()));
+//            imgCardPlaying.setOnTouchListener(this);
+//        }catch(NoMoreCardsException ex){
+//            Log.e("Error", "No more cards");
+//            //TODO end of game
+//        }
     }
 
     /**
@@ -90,9 +90,10 @@ public class BoardActivity extends AppCompatActivity implements View.OnTouchList
     private Player initializePlayer(int id){
         Player player = new Player();
         player.setTable(new Table(context, id));
-        Hand hand = deck.getHand();
-        hand.initializeHand(context, id);
-        player.setHand(hand);
+        //TODO remove
+        //Hand hand = deck.getHand();
+//        hand.initializeHand(context, id);
+//        idplayer.setHand(hand);
         return player;
     }
 
