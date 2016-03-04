@@ -4,5 +4,12 @@ package com.nojsoft.conquian.constants;
  * Created by jorge on 13/02/16.
  */
 public class CardConstants {
-    public static String [] types = {"g", "m", "s", "c"}; // Card types G = Gold, M = Mazer, etc, lowercase to match with drawables name
+    public static String [] cardNames = {"g01", "g02", "g03", "g04", "g05",
+                                         "g06", "g07", "g08", "g09", "g10",
+                                         "m01", "m02", "m03", "m04", "m05",
+                                         "m06", "m07", "m08", "m09", "m10",
+                                         "s01", "s02", "s03", "s04", "s05",
+                                         "s06", "s07", "s08", "s09", "s10",
+                                         "c01", "c02", "c03", "c04", "c05",
+                                         "c06", "c07", "c08", "c09", "c10",};
 }
