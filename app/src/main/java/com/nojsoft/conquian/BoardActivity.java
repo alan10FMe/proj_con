@@ -26,12 +26,11 @@ import com.nojsoft.conquian.views.CardView;
 public class BoardActivity extends AppCompatActivity implements View.OnTouchListener, View.OnDragListener, View.OnClickListener {
 
     private ImageButton btnDeck;
-    private ImageView imgCardPlaying;
+    private LinearLayout cardPlaying;
     private Player[] players;
     int numberPlayers = 3;
     int myPlayerId = 0;
     private Deck deck;
-    private CardView actualCard;
     private Context context;
 
     @Override
@@ -39,18 +38,16 @@ public class BoardActivity extends AppCompatActivity implements View.OnTouchList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
         context = this;
-//        deck = new Deck();
-//        btnDeck = (ImageButton)findViewById(R.id.btn_deck);
-//        imgCardPlaying = (ImageView)findViewById(R.id.img_card_playing);
+        deck = new Deck(context);
+        btnDeck = (ImageButton)findViewById(R.id.btn_deck);
+        cardPlaying = (LinearLayout)findViewById(R.id.linear_card_playing);
 //        initializePlayers();
 //        displayCards();
-//        startTurnPlayer();
+        startTurnPlayer();
     }
 
     private void startTurnPlayer(){
         btnDeck.setOnClickListener(this);
-        players[myPlayerId].enableDD();
-
     }
 
     private void endTurnPlayer(){
@@ -61,14 +58,12 @@ public class BoardActivity extends AppCompatActivity implements View.OnTouchList
      * Method to get the next card from the deck
      */
     private void takeNextCard(){
-//        try{
-////            actualCard = deck.getNextCard();
-//            imgCardPlaying.setImageResource(getResources().getIdentifier(actualCard.getName(), "drawable", getPackageName()));
-//            imgCardPlaying.setOnTouchListener(this);
-//        }catch(NoMoreCardsException ex){
-//            Log.e("Error", "No more cards");
-//            //TODO end of game
-//        }
+        try{
+            cardPlaying.addView(deck.getNextCard());
+        }catch(NoMoreCardsException ex){
+            Log.e("Error", "No more cards");
+            //TODO end of game
+        }
     }
 
     /**

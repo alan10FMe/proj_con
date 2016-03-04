@@ -18,6 +18,7 @@ public class Hand {
     private CardView [] cards;//Array with cards, the player will get 8, the 9th card is the objective
     private Context context;
     private int id;
+    private LinearLayout linearHand;
 
     /**
      * Default constructor
@@ -27,6 +28,7 @@ public class Hand {
     public void initializeHand(Context context, int id){
         this.context = context;
         this.id = id;
+        linearHand = (LinearLayout)((Activity)context).findViewById(context.getResources().getIdentifier("hand_player_"+id, "id", context.getPackageName()));
     }
 
     /**
@@ -44,6 +46,15 @@ public class Hand {
      */
     public CardView[] getCards (){
         return this.cards;
+    }
+
+
+    public LinearLayout getLinearHand() {
+        return linearHand;
+    }
+
+    public void setLinearHand(LinearLayout linearHand) {
+        this.linearHand = linearHand;
     }
 
     /**

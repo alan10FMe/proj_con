@@ -16,6 +16,7 @@ public class Table {
     private CardView [] cards;//Array with cards, the player can have up to 9 cards
     private Context context;
     private int id;
+    private LinearLayout linearTable;
 
 
     private Table (){
@@ -24,6 +25,7 @@ public class Table {
     public Table(Context context, int id){
         this.context = context;
         this.id = id;
+        linearTable = (LinearLayout) (((Activity)context).findViewById(context.getResources().getIdentifier("table_player_" + id, "id", context.getPackageName())));
     }
 
     /**

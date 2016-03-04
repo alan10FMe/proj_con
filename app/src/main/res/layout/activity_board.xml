@@ -47,7 +47,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/board_player_2"
+            android:id="@+id/table_player_2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -103,18 +103,12 @@
                 android:layout_weight="1" />
 
             <LinearLayout
+                android:id="@+id/linear_card_playing"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/background"
                 android:layout_weight="1"
                 android:gravity="center">
-
-                <com.nojsoft.conquian.views.CardView
-                    android:id="@+id/img_card_playing"
-                    android:layout_width="60dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/background"
-                    custom:name_card="cartaaaa"
-                    custom:position="1" />
             </LinearLayout>
 
 
@@ -130,7 +124,7 @@
             android:weightSum="2">
 
             <LinearLayout
-                android:id="@+id/board_player_0"
+                android:id="@+id/table_player_0"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -204,7 +198,7 @@
         android:weightSum="2">
 
         <LinearLayout
-            android:id="@+id/board_player_1"
+            android:id="@+id/table_player_1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
