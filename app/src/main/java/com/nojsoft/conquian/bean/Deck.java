@@ -60,6 +60,7 @@ public class Deck {
         if(cards.size()<1)
             throw new NoMoreCardsException();
         card = cards.remove(0);
+        cardView = convertNameToCardView(context, card);
         return cardView;
     }
 
@@ -91,7 +92,7 @@ public class Deck {
         CardView cardView = null;
         String cardName = CardConstants.cardNames[constPos];
         String type = cardName.substring(0, 1);
-        int numValue = Integer.getInteger(cardName.substring(1));
+        int numValue =  Integer.parseInt (cardName.substring(1));
         cardView = new CardView(context, numValue, type, id++);
         return cardView;
     }
