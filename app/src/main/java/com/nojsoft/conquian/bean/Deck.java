@@ -92,8 +92,9 @@ public class Deck {
         CardView cardView = null;
         String cardName = CardConstants.cardNames[constPos];
         String type = cardName.substring(0, 1);
-        int numValue =  Integer.parseInt (cardName.substring(1));
+        int numValue =  Integer.parseInt(cardName.substring(1));
         cardView = new CardView(context, numValue, type, id++);
+        cardView.setImageResource(context.getResources().getIdentifier(type+numValue, "drawable", context.getPackageName()));
         return cardView;
     }
 }

@@ -57,7 +57,7 @@ public class BoardActivity extends AppCompatActivity implements View.OnTouchList
     /**
      * Method to get the next card from the deck
      */
-    private void takeNextCard(){
+    private void takeNextCard() {
         try{
             cardPlaying.addView(deck.getNextCard());
         }catch(NoMoreCardsException ex){
