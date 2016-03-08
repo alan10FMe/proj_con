@@ -42,8 +42,6 @@
 
             <LinearLayout style="@style/LinearVertical"/>
 
-            <LinearLayout style="@style/LinearVertical"/>
-
         </LinearLayout>
 
         <LinearLayout
@@ -108,8 +106,8 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/background"
                 android:layout_weight="1"
-                android:gravity="center">
-            </LinearLayout>
+                android:gravity="center"
+                android:orientation="horizontal"/>
 
 
         </LinearLayout>

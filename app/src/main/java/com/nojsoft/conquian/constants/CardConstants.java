@@ -12,4 +12,8 @@ public class CardConstants {
                                          "s06", "s07", "s08", "s09", "s10",
                                          "c01", "c02", "c03", "c04", "c05",
                                          "c06", "c07", "c08", "c09", "c10",};
+
+    public static final int LOCATION_ACTUAL = 1;
+    public static final int LOCATION_TABLE = 2;
+    public static final int LOCATION_HAND = 3;
 }

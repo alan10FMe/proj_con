@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.nojsoft.conquian.Util.Utility;
 import com.nojsoft.conquian.constants.CardConstants;
 import com.nojsoft.conquian.exception.NoMoreCardsException;
 import com.nojsoft.conquian.views.CardView;
@@ -94,7 +95,7 @@ public class Deck {
         String type = cardName.substring(0, 1);
         int numValue =  Integer.parseInt(cardName.substring(1));
         cardView = new CardView(context, numValue, type, id++);
-        cardView.setImageResource(context.getResources().getIdentifier(type+numValue, "drawable", context.getPackageName()));
+        Utility.displayImageCard(context, cardView);
         return cardView;
     }
 }

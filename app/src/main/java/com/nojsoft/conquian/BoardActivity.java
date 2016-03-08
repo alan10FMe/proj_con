@@ -11,14 +11,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.nojsoft.conquian.bean.Deck;
 import com.nojsoft.conquian.bean.Hand;
 import com.nojsoft.conquian.bean.Player;
 import com.nojsoft.conquian.bean.Table;
+import com.nojsoft.conquian.constants.CardConstants;
 import com.nojsoft.conquian.exception.NoMoreCardsException;
 import com.nojsoft.conquian.views.CardView;
 
@@ -39,79 +38,74 @@ public class BoardActivity extends AppCompatActivity implements View.OnTouchList
         setContentView(R.layout.activity_board);
         context = this;
         deck = new Deck(context);
-        btnDeck = (ImageButton)findViewById(R.id.btn_deck);
-        cardPlaying = (LinearLayout)findViewById(R.id.linear_card_playing);
-//        initializePlayers();
-//        displayCards();
+        btnDeck = (ImageButton) findViewById(R.id.btn_deck);
+        cardPlaying = (LinearLayout) findViewById(R.id.linear_card_playing);
+        initializePlayers();
         startTurnPlayer();
     }
 
-    private void startTurnPlayer(){
-        btnDeck.setOnClickListener(this);
+    /**
+     * Method to initialize array with players
+     */
+    private void initializePlayers() {
+        players = new Player[numberPlayers];
+        for (int i = 0; i < numberPlayers; i++) {
+            players[i] = initializePlayer(i);
+        }
     }
 
-    private void endTurnPlayer(){
-        players[myPlayerId].disableDD();
+    /**
+     * Method to initialize each player, creating its hand and table
+     *
+     * @param id playerID
+     * @return player
+     */
+    private Player initializePlayer(int id) {
+        Player player = new Player();
+        if (id == myPlayerId) {
+            player.setIsPlayer(true);
+        } else {
+            player.setIsPlayer(false);
+        }
+        player.setTable(new Table(context, id));
+        Hand hand = deck.getHand();
+        hand.initializeHand(context, id, player.isPlayer());
+        player.setHand(hand);
+
+        return player;
+    }
+
+    /**
+     * Method to start turn for the player
+     */
+    private void startTurnPlayer() {
+        btnDeck.setOnClickListener(this);
+        players[myPlayerId].enableDD();
     }
 
     /**
      * Method to get the next card from the deck
      */
     private void takeNextCard() {
-        try{
-            cardPlaying.addView(deck.getNextCard());
-        }catch(NoMoreCardsException ex){
+        try {
+            CardView cardView = deck.getNextCard();
+            cardView.setLocation(CardConstants.LOCATION_ACTUAL);
+            cardPlaying.addView(cardView);
+            btnDeck.setOnClickListener(null);
+        } catch (NoMoreCardsException ex) {
             Log.e("Error", "No more cards");
             //TODO end of game
         }
     }
 
-    /**
-     * Method to initialize array with players
-     */
-    private void initializePlayers(){
-        players = new Player[numberPlayers];
-        Player player = null;
-        for(int i = 0; i < numberPlayers; i++){
-           players[i] = initializePlayer(i);
-        }
-    }
-
-    /**
-     * Method to initialize each player, creating its hand and table
-     * @param id playerID
-     * @return player
-     */
-    private Player initializePlayer(int id){
-        Player player = new Player();
-        player.setTable(new Table(context, id));
-        //TODO remove
-        //Hand hand = deck.getHand();
-//        hand.initializeHand(context, id);
-//        idplayer.setHand(hand);
-        return player;
-    }
-
-
-    /**
-     * Method to display in the UI the cards
-     */
-    private void displayCards(){
-        for(int i = 0; i < numberPlayers; i++){
-//            players[i].getHand().transformCardsToViews();
-        }
-
-    }
-
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.btn_deck:{
+        switch (view.getId()) {
+            case R.id.btn_deck: {
                 takeNextCard();
                 break;
             }
         }
-
     }
 
     @Override

@@ -8,7 +8,7 @@ public class Player {
     private int id;
     private Hand hand;
     private Table table;
-    private boolean isComputer;
+    private boolean isPlayer;
 
     public int getId() {
         return id;
@@ -34,12 +34,12 @@ public class Player {
         this.table = table;
     }
 
-    public boolean isComputer() {
-        return isComputer;
+    public boolean isPlayer() {
+        return isPlayer;
     }
 
-    public void setIsComputer(boolean isComputer) {
-        this.isComputer = isComputer;
+    public void setIsPlayer(boolean isPlayer) {
+        this.isPlayer = isPlayer;
     }
 
     public void enableDD() {
@@ -50,9 +50,9 @@ public class Player {
     }
 
     public void disableDD() {
-        this.hand.disableDrag();
-        this.table.disableDrop();
-        this.table.disableDrag();
-        this.hand.disableDrop();
+//        this.hand.disableDrag();
+//        this.table.disableDrop();
+//        this.table.disableDrag();
+//        this.hand.disableDrop();
     }
 }

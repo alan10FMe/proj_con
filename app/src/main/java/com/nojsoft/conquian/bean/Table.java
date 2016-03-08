@@ -5,7 +5,6 @@ import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.nojsoft.conquian.R;
 import com.nojsoft.conquian.views.CardView;
 
 /**
@@ -13,47 +12,46 @@ import com.nojsoft.conquian.views.CardView;
  */
 public class Table {
 
-    private CardView [] cards;//Array with cards, the player can have up to 9 cards
+    private CardView[] cards;//Array with cards, the player can have up to 9 cards
     private Context context;
     private int id;
     private LinearLayout linearTable;
 
 
-    private Table (){
+    private Table() {
     }
 
-    public Table(Context context, int id){
+    public Table(Context context, int id) {
         this.context = context;
         this.id = id;
-        linearTable = (LinearLayout) (((Activity)context).findViewById(context.getResources().getIdentifier("table_player_" + id, "id", context.getPackageName())));
+        linearTable = (LinearLayout) (((Activity) context).findViewById(context.getResources().getIdentifier("table_player_" + id, "id", context.getPackageName())));
     }
 
     /**
-     *
      * @param cards Array of Card objects, the cards the user has in the table
      */
-    public  void set (CardView [] cards ){
+    public void set(CardView[] cards) {
         this.cards = cards;
     }
 
+    public LinearLayout getLinearTable() {
+        return linearTable;
+    }
 
-    /**
-     *
-     * @return Array of Card objects, the cards the user has in the table
-     */
-    public CardView[] getCards (){
-        return this.cards;
+    public void setLinearTable(LinearLayout linearTable) {
+        this.linearTable = linearTable;
     }
 
     /**
      * Set a card in a given position on the table, the position must be available (empty)
-     * @param card the Card object that we want to set
+     *
+     * @param card          the Card object that we want to set
      * @param tablePosition the position to set the card
      * @return true if the card was set, false if the place was not empty
      */
-    public boolean setCard (CardView card, int tablePosition){
+    public boolean setCard(CardView card, int tablePosition) {
         boolean flag = false;
-        if(cards[tablePosition] == null){
+        if (cards[tablePosition] == null) {
             cards[tablePosition] = card;
             flag = true;
         }
@@ -62,11 +60,12 @@ public class Table {
 
     /**
      * Changes the position of two cards, useful if the user wants to re organize his/her cards
+     *
      * @param currentPos current position of the card in the hand (array)
-     * @param futurePos the desired position of the card
+     * @param futurePos  the desired position of the card
      */
-    public void changePosition (int currentPos, int futurePos){
-        boolean changed =false;
+    public void changePosition(int currentPos, int futurePos) {
+        boolean changed = false;
         CardView holder = cards[currentPos];
         cards[currentPos] = cards[futurePos];
         cards[futurePos] = holder;
@@ -74,46 +73,53 @@ public class Table {
 
     /**
      * returns the position of the card in the table
+     *
      * @param id the card's id in which we are interested
      * @return the position in hand (array)
      */
-    public int getHandPosition (int id){
+    public int getHandPosition(int id) {
         int position = -1;
         CardView card;
-        for(int i = 0; i < cards.length; i++){
-            card = cards [i];
-            if(card.getId() == id)
+        for (int i = 0; i < cards.length; i++) {
+            card = cards[i];
+            if (card.getId() == id)
                 position = i;
         }
         return position;
     }
 
 
-    public void enableDrop() {
-        if (context instanceof View.OnDragListener) {
-            for (int i = 0; i < cards.length; i++) {
-                cards[i].setOnDragListener((View.OnDragListener) context);
-            }
-        }
-    }
-
     public void enableDrag() {
         if (context instanceof View.OnTouchListener) {
-            for (int i = 0; i < cards.length; i++) {
-                cards[i].setOnTouchListener((View.OnTouchListener) context);
+            for (int i = 0; i < linearTable.getChildCount(); i++) {
+                if (linearTable.getChildAt(i) != null && linearTable.getChildAt(i) instanceof LinearLayout
+                        && ((LinearLayout) linearTable.getChildAt(i)).getChildAt(0) != null) {
+                    ((LinearLayout) linearTable.getChildAt(i)).getChildAt(0).setOnTouchListener((View.OnTouchListener) context);
+                }
             }
         }
     }
 
-    public void disableDrag() {
-        for (int i = 0; i < cards.length; i++) {
-            cards[i].setOnTouchListener(null);
+    public void enableDrop() {
+        if (context instanceof View.OnDragListener) {
+            for (int i = 0; i < linearTable.getChildCount(); i++) {
+                if (linearTable.getChildAt(i) != null && linearTable.getChildAt(i) instanceof LinearLayout
+                        && ((LinearLayout) linearTable.getChildAt(i)).getChildAt(0) == null) {
+                    linearTable.getChildAt(i).setOnDragListener((View.OnDragListener) context);
+                }
+            }
         }
     }
 
-    public void disableDrop() {
-        for (int i = 0; i < cards.length; i++) {
-            cards[i].setOnDragListener(null);
-        }
-    }
+//    public void disableDrag() {
+//        for (int i = 0; i < cards.length; i++) {
+//            cards[i].setOnTouchListener(null);
+//        }
+//    }
+//
+//    public void disableDrop() {
+//        for (int i = 0; i < cards.length; i++) {
+//            cards[i].setOnDragListener(null);
+//        }
+//    }
 }

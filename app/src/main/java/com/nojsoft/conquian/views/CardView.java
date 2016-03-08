@@ -19,8 +19,8 @@ public class CardView extends ImageView{
     private String nameCard;
     private Integer position;
     private Integer previousPosition;
-    private String location;
-    private String previousLocation;
+    private Integer location;
+    private Integer previousLocation;
 
     public CardView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -33,12 +33,16 @@ public class CardView extends ImageView{
 
         s = a.getString(R.styleable.custom_image_view_group);
         if (s != null) {
-            this.setLocation(s.toString());
+            this.setLocation(new Integer(s.toString()).intValue());
+        } else {
+            this.setLocation(null);
         }
 
         s = a.getString(R.styleable.custom_image_view_previous_group);
         if (s != null) {
-            this.setPreviousLocation(s.toString());
+            this.setPreviousLocation(new Integer(s.toString()).intValue());
+        } else {
+            this.setPreviousLocation(null);
         }
 
         s = a.getString(R.styleable.custom_image_view_position);
@@ -87,20 +91,20 @@ public class CardView extends ImageView{
         this.previousPosition = previousPosition;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String group) {
-        this.location = group;
-    }
-
-    public String getPreviousLocation() {
+    public Integer getPreviousLocation() {
         return previousLocation;
     }
 
-    public void setPreviousLocation(String previousLocation) {
+    public void setPreviousLocation(Integer previousLocation) {
         this.previousLocation = previousLocation;
+    }
+
+    public Integer getLocation() {
+        return location;
+    }
+
+    public void setLocation(Integer location) {
+        this.location = location;
     }
 
     /**
