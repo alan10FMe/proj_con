@@ -13,10 +13,10 @@ import com.nojsoft.conquian.views.CardView;
  * Created by jorge on 11/02/16.
  */
 public class Hand {
-    private CardView[] cards;//Array with cards, the player will get 8, the 9th card is the objective
+    private LinearLayout[] cards = new LinearLayout[8];//Array with cards, the player will get 8, the 9th card is the objective
+    private CardView[] cardsView;
     private Context context;
     private int id;
-    private LinearLayout linearHand;
 
     /**
      * Default constructor
@@ -24,34 +24,29 @@ public class Hand {
     public Hand() {
     }
 
+    public LinearLayout[] getCards() {
+        return cards;
+    }
+
+    public void setCards(CardView[] cardsView) {
+        this.cardsView = cardsView;
+    }
+
     public void initializeHand(Context context, int id, boolean isPlayer) {
         this.context = context;
         this.id = id;
-        linearHand = (LinearLayout) ((Activity) context).findViewById(context.getResources().getIdentifier("hand_player_" + id, "id", context.getPackageName()));
+        LinearLayout linearHand = (LinearLayout) ((Activity) context).findViewById(context.getResources().getIdentifier("hand_player_" + id, "id", context.getPackageName()));
         for (int i = 0; i < linearHand.getChildCount(); i++) {
-            cards[i].setPosition(i);
-            cards[i].setLocation(CardConstants.LOCATION_HAND);
+            cards[i] = (LinearLayout) linearHand.getChildAt(i);
+            cardsView[i].setLocation(CardConstants.LOCATION_HAND);
             if (!isPlayer) {
-                Utility.displayImageBack(cards[i]);
+                Utility.displayImageBack(cardsView[i]);
             }
-            ((LinearLayout) linearHand.getChildAt(i)).addView(cards[i]);
+            cards[i].addView(cardsView[i]);
         }
+        cardsView = null;
     }
 
-    /**
-     * @param cards Array of Card objects, the cards the user has in his/her hand
-     */
-    public void set(CardView[] cards) {
-        this.cards = cards;
-    }
-
-    public LinearLayout getLinearHand() {
-        return linearHand;
-    }
-
-    public void setLinearHand(LinearLayout linearHand) {
-        this.linearHand = linearHand;
-    }
 
     /**
      * return the cards that the user wants to drop from his/her hand, and removes them from hand
@@ -67,9 +62,9 @@ public class Hand {
         if (ids != null && ids.length > 0) {
             droppedCards = new CardView[ids.length];
             for (int id : ids) {
-                for (CardView card : cards) {
-                    if (card.getId() == id) {
-                        droppedCards[position++] = card;
+                for (LinearLayout card : cards) {
+                    if (card.getChildAt(0) != null && ((CardView) card.getChildAt(0)).getIdCard() == id) {
+                        droppedCards[position++] = (CardView) card.getChildAt(0);
                     }
                 }
             }
@@ -77,8 +72,10 @@ public class Hand {
             if (position > 0) {
                 for (CardView dropped : droppedCards) {
                     for (int i = 0; i < cards.length; i++) {
-                        if (cards[i] == dropped)
-                            cards[i] = null;
+                        if (cards[i].getChildAt(0) == dropped) {
+                            cards[i].removeAllViews();
+                            break;
+                        }
                     }
                 }
             } else {
@@ -96,9 +93,11 @@ public class Hand {
      */
     public void changePosition(int currentPos, int futurePos) {
         boolean changed = false;
-        CardView holder = cards[currentPos];
-        cards[currentPos] = cards[futurePos];
-        cards[futurePos] = holder;
+        CardView holder = (CardView) cards[currentPos].getChildAt(0);
+        cards[currentPos].removeAllViews();
+        cards[currentPos].addView(cards[futurePos].getChildAt(0));
+        cards[futurePos].removeAllViews();
+        cards[futurePos].addView(holder);
     }
 
     /**
@@ -111,19 +110,19 @@ public class Hand {
         int position = -1;
         CardView card;
         for (int i = 0; i < cards.length; i++) {
-            card = cards[i];
-            if (card.getId() == id)
+            card = (CardView) cards[i].getChildAt(0);
+            if (card != null && card.getIdCard() == id) {
                 position = i;
+            }
         }
         return position;
     }
 
     public void enableDrag() {
         if (context instanceof View.OnTouchListener) {
-            for (int i = 0; i < linearHand.getChildCount(); i++) {
-                if (linearHand.getChildAt(i) != null && linearHand.getChildAt(i) instanceof LinearLayout
-                        && ((LinearLayout) linearHand.getChildAt(i)).getChildAt(0) != null) {
-                    ((LinearLayout) linearHand.getChildAt(i)).getChildAt(0).setOnTouchListener((View.OnTouchListener) context);
+            for (int i = 0; i < cards.length; i++) {
+                if (cards[i].getChildCount() > 0) {
+                    cards[i].getChildAt(0).setOnTouchListener((View.OnTouchListener) context);
                 }
             }
         }
@@ -131,25 +130,23 @@ public class Hand {
 
     public void enableDrop() {
         if (context instanceof View.OnDragListener) {
-            for (int i = 0; i < linearHand.getChildCount(); i++) {
-                if (linearHand.getChildAt(i) != null && linearHand.getChildAt(i) instanceof LinearLayout
-                        && ((LinearLayout) linearHand.getChildAt(i)).getChildAt(0) == null) {
-                    linearHand.getChildAt(i).setOnDragListener((View.OnDragListener) context);
+            for (int i = 0; i < cards.length; i++) {
+                if (cards[i].getChildCount() == 0) {
+                    cards[i].setOnDragListener((View.OnDragListener) context);
                 }
             }
         }
     }
 
-//
-//    public void disableDrag() {
-//        for (int i = 0; i < cards.length; i++) {
-//            cards[i].setOnTouchListener(null);
-//        }
-//    }
-//
-//    public void disableDrop() {
-//        for (int i = 0; i < cards.length; i++) {
-//            cards[i].setOnDragListener(null);
-//        }
-//    }
+    public void disableDrag() {
+        for (int i = 0; i < cards.length; i++) {
+            cards[i].getChildAt(0).setOnTouchListener(null);
+        }
+    }
+
+    public void disableDrop() {
+        for (int i = 0; i < cards.length; i++) {
+            cards[i].setOnDragListener(null);
+        }
+    }
 }

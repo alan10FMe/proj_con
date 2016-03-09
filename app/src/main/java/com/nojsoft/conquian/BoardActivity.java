@@ -24,11 +24,11 @@ import com.nojsoft.conquian.views.CardView;
 
 public class BoardActivity extends AppCompatActivity implements View.OnTouchListener, View.OnDragListener, View.OnClickListener {
 
+    int numberPlayers = 3;
+    int myPlayerId = 0;
     private ImageButton btnDeck;
     private LinearLayout cardPlaying;
     private Player[] players;
-    int numberPlayers = 3;
-    int myPlayerId = 0;
     private Deck deck;
     private Context context;
 

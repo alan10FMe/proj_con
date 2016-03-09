@@ -12,10 +12,9 @@ import com.nojsoft.conquian.views.CardView;
  */
 public class Table {
 
-    private CardView[] cards;//Array with cards, the player can have up to 9 cards
+    private LinearLayout[] cards = new LinearLayout[9];//Array with cards, the player can have up to 9 cards
     private Context context;
     private int id;
-    private LinearLayout linearTable;
 
 
     private Table() {
@@ -24,22 +23,18 @@ public class Table {
     public Table(Context context, int id) {
         this.context = context;
         this.id = id;
-        linearTable = (LinearLayout) (((Activity) context).findViewById(context.getResources().getIdentifier("table_player_" + id, "id", context.getPackageName())));
+        LinearLayout linearTable = (LinearLayout) (((Activity) context).findViewById(context.getResources().getIdentifier("table_player_" + id, "id", context.getPackageName())));
+        for (int i = 0; i < linearTable.getChildCount(); i++) {
+            cards[i] = (LinearLayout) linearTable.getChildAt(i);
+        }
     }
 
-    /**
-     * @param cards Array of Card objects, the cards the user has in the table
-     */
-    public void set(CardView[] cards) {
+    public LinearLayout[] getCards() {
+        return cards;
+    }
+
+    public void setCards(LinearLayout[] cards) {
         this.cards = cards;
-    }
-
-    public LinearLayout getLinearTable() {
-        return linearTable;
-    }
-
-    public void setLinearTable(LinearLayout linearTable) {
-        this.linearTable = linearTable;
     }
 
     /**
@@ -51,8 +46,8 @@ public class Table {
      */
     public boolean setCard(CardView card, int tablePosition) {
         boolean flag = false;
-        if (cards[tablePosition] == null) {
-            cards[tablePosition] = card;
+        if (cards[tablePosition].getChildAt(0) != null) {
+            cards[tablePosition].addView(card);
             flag = true;
         }
         return flag;
@@ -66,9 +61,11 @@ public class Table {
      */
     public void changePosition(int currentPos, int futurePos) {
         boolean changed = false;
-        CardView holder = cards[currentPos];
-        cards[currentPos] = cards[futurePos];
-        cards[futurePos] = holder;
+        CardView holder = (CardView) cards[currentPos].getChildAt(0);
+        cards[currentPos].removeAllViews();
+        cards[currentPos].addView(cards[futurePos].getChildAt(0));
+        cards[futurePos].removeAllViews();
+        cards[futurePos].addView(holder);
     }
 
     /**
@@ -77,13 +74,14 @@ public class Table {
      * @param id the card's id in which we are interested
      * @return the position in hand (array)
      */
-    public int getHandPosition(int id) {
+    public int getTablePosition(int id) {
         int position = -1;
         CardView card;
         for (int i = 0; i < cards.length; i++) {
-            card = cards[i];
-            if (card.getId() == id)
+            card = (CardView) cards[i].getChildAt(0);
+            if (card != null && card.getIdCard() == id) {
                 position = i;
+            }
         }
         return position;
     }
@@ -91,10 +89,9 @@ public class Table {
 
     public void enableDrag() {
         if (context instanceof View.OnTouchListener) {
-            for (int i = 0; i < linearTable.getChildCount(); i++) {
-                if (linearTable.getChildAt(i) != null && linearTable.getChildAt(i) instanceof LinearLayout
-                        && ((LinearLayout) linearTable.getChildAt(i)).getChildAt(0) != null) {
-                    ((LinearLayout) linearTable.getChildAt(i)).getChildAt(0).setOnTouchListener((View.OnTouchListener) context);
+            for (int i = 0; i < cards.length; i++) {
+                if (cards[i].getChildCount() > 0) {
+                    cards[i].getChildAt(0).setOnTouchListener((View.OnTouchListener) context);
                 }
             }
         }
@@ -102,24 +99,23 @@ public class Table {
 
     public void enableDrop() {
         if (context instanceof View.OnDragListener) {
-            for (int i = 0; i < linearTable.getChildCount(); i++) {
-                if (linearTable.getChildAt(i) != null && linearTable.getChildAt(i) instanceof LinearLayout
-                        && ((LinearLayout) linearTable.getChildAt(i)).getChildAt(0) == null) {
-                    linearTable.getChildAt(i).setOnDragListener((View.OnDragListener) context);
+            for (int i = 0; i < cards.length; i++) {
+                if (cards[i].getChildCount() == 0) {
+                    cards[i].setOnDragListener((View.OnDragListener) context);
                 }
             }
         }
     }
 
-//    public void disableDrag() {
-//        for (int i = 0; i < cards.length; i++) {
-//            cards[i].setOnTouchListener(null);
-//        }
-//    }
-//
-//    public void disableDrop() {
-//        for (int i = 0; i < cards.length; i++) {
-//            cards[i].setOnDragListener(null);
-//        }
-//    }
+    public void disableDrag() {
+        for (int i = 0; i < cards.length; i++) {
+            cards[i].getChildAt(0).setOnTouchListener(null);
+        }
+    }
+
+    public void disableDrop() {
+        for (int i = 0; i < cards.length; i++) {
+            cards[i].setOnDragListener(null);
+        }
+    }
 }
