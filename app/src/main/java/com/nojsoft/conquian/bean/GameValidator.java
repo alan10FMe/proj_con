@@ -5,6 +5,7 @@ import android.widget.LinearLayout;
 import com.nojsoft.conquian.views.CardView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -14,13 +15,23 @@ public class GameValidator {
 
     public boolean validateGroups (Table table){
         boolean hasChanged = false;
-        LinearLayout [] cards = table.getCards();
-        //Validate if table contains at least 3 consecutive cards
-        if(validateMinimumConsecutiveCards(cards)){
+        LinearLayout [] layouts = table.getCards();
+        CardView [] cards = convertLayoutsToViews(layouts);
+        List <List<Integer>> cardGroups = getCardGroups(cards);
+        //Validate if table contains at least 1 group with 3 cards
+        if(cardGroups.size() > 0){
             //Checks if there are groups with the same numValue
-
+            hasChanged = checkSameNumGroups(cards, cardGroups);
+            //If there was a change check if there are cards without group remaining
+            if(hasChanged) {
+                cardGroups = getCardGroups(cards);
+            }
+            //If after the previous process there are still groups to check, validate straights
+            if (cardGroups.size() > 0) {
+                //Even if there are no Straights the previous changes, if any, must be reported
+                hasChanged = hasChanged || checkStraightGroups(cards, cardGroups);
+            }
         }
-
         return hasChanged;
     }
 
@@ -36,41 +47,47 @@ public class GameValidator {
         return hasChanged;
     }
 
-    private boolean validateMinimumConsecutiveCards (LinearLayout [] layouts){
-        boolean hasEnoughConsecutiveCards = false;
-        int j = 0;
-
-        for(LinearLayout linearLayout : layouts) {
-            if (linearLayout.getChildCount() > 0
-                    && ((CardView)linearLayout.getChildAt(0)).getGroup() != null){
-                j++;
-            } else {
-                j = 0;
+    private CardView [] convertLayoutsToViews (LinearLayout [] layouts){
+        CardView [] views = new CardView[9];
+        for (int i = 0; i < layouts.length; i++) {
+            if (layouts[i].getChildCount() > 0) {
+                views [i] = (CardView) layouts[i].getChildAt(0);
             }
-            if(j >= 3){
-                return true;
+        }
+        return views;
+    }
+
+    private List <List <Integer> > getCardGroups (CardView [] cardViews){
+        List <List <Integer> > groups = new ArrayList<List <Integer> >();
+        List <Integer> group = new ArrayList<Integer>();
+        CardView cardView;
+
+        for (int i = 0; i < cardViews.length; i++) {
+            cardView = cardViews[i];
+            if (cardView != null && cardView.getGroup() == null){
+                group.add(i);
+            } else if (group.size() >= 3) {
+                groups.add(group);
+                group = new ArrayList<Integer>();
             }
         }
 
-        return hasEnoughConsecutiveCards;
+        return groups;
     }
 
-    private boolean checkSameNumGroups (LinearLayout [] layouts) {
+    private boolean checkSameNumGroups (CardView [] cards, List<List<Integer>> groups) {
         boolean hasGroups = false;
-        List <Integer> positions = getCardsPositions(layouts);
 
         return hasGroups;
     }
 
-    private List <Integer> getCardsPositions (LinearLayout [] layouts){
-        List <Integer> positions = new ArrayList <Integer> ();
-        for (int i = 0; i < layouts.length; i++){
-            LinearLayout linearLayout = layouts [i];
-            if(linearLayout.getChildCount() > 0
-                    && ((CardView)linearLayout.getChildAt(0)).getGroup() != null){
-                positions.add(i);
-            }
-        }
-        return positions;
+    private boolean checkStraightGroups (CardView [] cards, List<List<Integer>> groups) {
+        boolean hasGroups = false;
+
+        return hasGroups;
     }
+
+
+
+
 }
