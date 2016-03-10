@@ -1,70 +1,58 @@
 package com.nojsoft.conquian.bean;
 
 import android.widget.LinearLayout;
-
 import com.nojsoft.conquian.views.CardView;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
  * Created by jorge on 09/03/16.
  */
-public class GameValidator { //TODO: hacer todos los metodos estaticos para no tener que crear instancias del objeto e incrementar performance
+public class GameValidator {
 
-    public boolean validateGroups (Table table){
+    public static boolean validateGroups (Table table){
         boolean hasChanged = false;
         LinearLayout [] layouts = table.getCards();
-        CardView [] cards = convertLayoutsToViews(layouts); //TODO: se puede hacer sin generar otro arreglo y solo usar el que ya existe?? si hacemos 5 validaciones por tirada por usuario en un turno de cada quien crearemos 15 arreglos nuevos
-        List <List<Integer>> cardGroups = getCardGroups(cards); //TODO: se puede hacer sin generar otro lista? mismo caso que arriba\
+        List <List<Integer>> cardGroups = getCardGroups(layouts); //TODO: se puede hacer sin generar otro lista? mismo caso que arriba\
         //Validate if table contains at least 1 group with 3 cards
         if(cardGroups.size() > 0){
             //Checks if there are groups with the same numValue
-            hasChanged = checkSameNumGroups(cards, cardGroups);
+            hasChanged = checkSameNumGroups(layouts, cardGroups);
             //If there was a change check if there are cards without group remaining
             if(hasChanged) {
-                cardGroups = getCardGroups(cards);
+                cardGroups = getCardGroups(layouts);
             }
             //If after the previous process there are still groups to check, validate straights
             if (cardGroups.size() > 0) {
                 //Even if there are no Straights the previous changes, if any, must be reported
-                hasChanged = hasChanged || checkStraightGroups(cards, cardGroups);
+                hasChanged = hasChanged || checkStraightGroups(layouts, cardGroups);
             }
         }
         return hasChanged;
     }
 
-    public boolean validateCurrentCardUtility (Player player, CardView currentCard){
+    public static boolean validateCurrentCardUtility (Player player, CardView currentCard){
         boolean hasChanged = false;
 
         return hasChanged;
     }
 
-    public boolean validateCardMatch (Table table, CardView card){
+    public static boolean validateCardMatch (Table table, CardView card){
         boolean hasChanged = false;
 
         return hasChanged;
     }
 
-    private CardView [] convertLayoutsToViews (LinearLayout [] layouts){
-        CardView [] views = new CardView[9];
-        for (int i = 0; i < layouts.length; i++) {
-            if (layouts[i].getChildCount() > 0) {
-                views [i] = (CardView) layouts[i].getChildAt(0);
-            }
-        }
-        return views;
-    }
 
-    private List <List <Integer> > getCardGroups (CardView [] cardViews){
+    private static List <List <Integer> > getCardGroups (LinearLayout [] layouts){
         List <List <Integer> > groups = new ArrayList<List <Integer> >();
         List <Integer> group = new ArrayList<Integer>();
-        CardView cardView;
+        LinearLayout linearLayout;
 
-        for (int i = 0; i < cardViews.length; i++) {
-            cardView = cardViews[i];
-            if (cardView != null && cardView.getGroup() == null){
+        for (int i = 0; i < layouts.length; i++) {
+            linearLayout = layouts[i];
+            if (linearLayout.getChildCount() > 0
+                    && ( (CardView) linearLayout.getChildAt(0)).getGroup() != null){
                 group.add(i);
             } else if (group.size() >= 3) {
                 groups.add(group);
@@ -75,19 +63,18 @@ public class GameValidator { //TODO: hacer todos los metodos estaticos para no t
         return groups;
     }
 
-    private boolean checkSameNumGroups (CardView [] cards, List<List<Integer>> groups) {
+    private static boolean checkSameNumGroups (LinearLayout [] layouts,
+                                               List<List<Integer>> groups) {
         boolean hasGroups = false;
 
         return hasGroups;
     }
 
-    private boolean checkStraightGroups (CardView [] cards, List<List<Integer>> groups) {
+    private static boolean checkStraightGroups (LinearLayout [] layouts,
+                                                List<List<Integer>> groups) {
         boolean hasGroups = false;
 
         return hasGroups;
     }
-
-
-
 
 }
