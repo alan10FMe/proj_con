@@ -11,13 +11,13 @@ import java.util.List;
 /**
  * Created by jorge on 09/03/16.
  */
-public class GameValidator {
+public class GameValidator { //TODO: hacer todos los metodos estaticos para no tener que crear instancias del objeto e incrementar performance
 
     public boolean validateGroups (Table table){
         boolean hasChanged = false;
         LinearLayout [] layouts = table.getCards();
-        CardView [] cards = convertLayoutsToViews(layouts);
-        List <List<Integer>> cardGroups = getCardGroups(cards);
+        CardView [] cards = convertLayoutsToViews(layouts); //TODO: se puede hacer sin generar otro arreglo y solo usar el que ya existe?? si hacemos 5 validaciones por tirada por usuario en un turno de cada quien crearemos 15 arreglos nuevos
+        List <List<Integer>> cardGroups = getCardGroups(cards); //TODO: se puede hacer sin generar otro lista? mismo caso que arriba\
         //Validate if table contains at least 1 group with 3 cards
         if(cardGroups.size() > 0){
             //Checks if there are groups with the same numValue

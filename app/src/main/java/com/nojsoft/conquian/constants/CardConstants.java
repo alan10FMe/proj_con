@@ -16,4 +16,8 @@ public class CardConstants {
     public static final int LOCATION_ACTUAL = 1;
     public static final int LOCATION_TABLE = 2;
     public static final int LOCATION_HAND = 3;
+
+    public static final String SUBGROUP_ONE = "1";
+    public static final String SUBGROUP_TWO = "2";
+    public static final String SUBGROUP_THREE = "3";
 }

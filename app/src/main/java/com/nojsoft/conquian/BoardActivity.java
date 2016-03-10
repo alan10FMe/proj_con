@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.nojsoft.conquian.bean.Deck;
+import com.nojsoft.conquian.bean.GameValidator;
 import com.nojsoft.conquian.bean.Hand;
 import com.nojsoft.conquian.bean.Player;
 import com.nojsoft.conquian.bean.Table;
@@ -31,6 +32,7 @@ public class BoardActivity extends AppCompatActivity implements View.OnTouchList
     private Player[] players;
     private Deck deck;
     private Context context;
+    private GameValidator gameValidator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class BoardActivity extends AppCompatActivity implements View.OnTouchList
         deck = new Deck(context);
         btnDeck = (ImageButton) findViewById(R.id.btn_deck);
         cardPlaying = (LinearLayout) findViewById(R.id.linear_card_playing);
+        gameValidator = new GameValidator();
         initializePlayers();
         startTurnPlayer();
     }
@@ -151,9 +154,13 @@ public class BoardActivity extends AppCompatActivity implements View.OnTouchList
                 View view = (View) event.getLocalState();
                 ViewGroup owner = (ViewGroup) view.getParent();
                 owner.removeView(view);
+                owner.setOnDragListener(this);
                 LinearLayout container = (LinearLayout) v;
                 container.addView(view);
+                container.setOnDragListener(null);
+                container.setBackgroundDrawable(normalShape);
                 view.setVisibility(View.VISIBLE);
+                gameValidator.validateGroups(players[myPlayerId].getTable());
                 break;
             case DragEvent.ACTION_DRAG_ENDED:
                 v.setBackgroundDrawable(normalShape);

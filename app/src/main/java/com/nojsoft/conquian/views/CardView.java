@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.nojsoft.conquian.R;
+import com.nojsoft.conquian.constants.CardConstants;
 
 /**
  * Created by alan on 3/2/16.
@@ -119,6 +121,21 @@ public class CardView extends ImageView {
      */
     public void setGroup(String group) {
         this.group = group;
+        if (getParent() != null) {
+            switch (group) {
+                case CardConstants.SUBGROUP_ONE:
+                    ((LinearLayout)getParent()).setBackgroundResource(R.drawable.background_group_1);
+                    break;
+                case CardConstants.SUBGROUP_TWO:
+                    ((LinearLayout)getParent()).setBackgroundResource(R.drawable.background_group_2);
+                    break;
+                case CardConstants.SUBGROUP_THREE:
+                    ((LinearLayout)getParent()).setBackgroundResource(R.drawable.background_group_3);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     /**
