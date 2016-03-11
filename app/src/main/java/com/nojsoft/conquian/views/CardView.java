@@ -3,6 +3,7 @@ package com.nojsoft.conquian.views;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -26,7 +27,7 @@ public class CardView extends ImageView {
 
     public CardView(Context context, AttributeSet attrs) {
         super(context, attrs);
-
+        setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, 1f));
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.custom_image_view);
         CharSequence s = a.getString(R.styleable.custom_image_view_name_card);
         if (s != null) {
@@ -124,13 +125,13 @@ public class CardView extends ImageView {
         if (getParent() != null) {
             switch (group) {
                 case CardConstants.SUBGROUP_ONE:
-                    ((LinearLayout)getParent()).setBackgroundResource(R.drawable.background_group_1);
+                    ((LinearLayout) getParent()).setBackgroundResource(R.drawable.background_group_1);
                     break;
                 case CardConstants.SUBGROUP_TWO:
-                    ((LinearLayout)getParent()).setBackgroundResource(R.drawable.background_group_2);
+                    ((LinearLayout) getParent()).setBackgroundResource(R.drawable.background_group_2);
                     break;
                 case CardConstants.SUBGROUP_THREE:
-                    ((LinearLayout)getParent()).setBackgroundResource(R.drawable.background_group_3);
+                    ((LinearLayout) getParent()).setBackgroundResource(R.drawable.background_group_3);
                     break;
                 default:
                     break;

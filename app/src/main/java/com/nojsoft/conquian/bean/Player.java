@@ -50,9 +50,9 @@ public class Player {
     }
 
     public void disableDD() {
-//        this.hand.disableDrag();
-//        this.table.disableDrop();
-//        this.table.disableDrag();
-//        this.hand.disableDrop();
+        this.hand.disableDrag();
+        this.table.disableDrop();
+        this.table.disableDrag();
+        this.hand.disableDrop();
     }
 }

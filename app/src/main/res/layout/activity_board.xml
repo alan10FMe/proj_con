@@ -52,25 +52,22 @@
             android:background="#661111"
             android:gravity="center"
             android:orientation="vertical"
-            android:weightSum="9">
+            android:weightSum="3">
 
-            <LinearLayout style="@style/LinearVertical"/>
+            <com.nojsoft.conquian.views.GroupView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_group_1"/>
 
-            <LinearLayout style="@style/LinearVertical"/>
+            <com.nojsoft.conquian.views.GroupView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_group_2"/>
 
-            <LinearLayout style="@style/LinearVertical"/>
-
-            <LinearLayout style="@style/LinearVertical"/>
-
-            <LinearLayout style="@style/LinearVertical"/>
-
-            <LinearLayout style="@style/LinearVertical"/>
-
-            <LinearLayout style="@style/LinearVertical"/>
-
-            <LinearLayout style="@style/LinearVertical"/>
-
-            <LinearLayout style="@style/LinearVertical"/>
+            <com.nojsoft.conquian.views.GroupView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_group_3"/>
 
         </LinearLayout>
 
@@ -129,25 +126,25 @@
                 android:background="#111221"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:weightSum="9">
+                android:weightSum="3">
 
-                <LinearLayout style="@style/LinearHorizontal"/>
+                <com.nojsoft.conquian.views.GroupView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_group_1"/>
 
-                <LinearLayout style="@style/LinearHorizontal"/>
+                <com.nojsoft.conquian.views.GroupView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_group_2"/>
 
-                <LinearLayout style="@style/LinearHorizontal"/>
-
-                <LinearLayout style="@style/LinearHorizontal"/>
-
-                <LinearLayout style="@style/LinearHorizontal"/>
-
-                <LinearLayout style="@style/LinearHorizontal"/>
-
-                <LinearLayout style="@style/LinearHorizontal"/>
-
-                <LinearLayout style="@style/LinearHorizontal"/>
-
-                <LinearLayout style="@style/LinearHorizontal"/>
+                <com.nojsoft.conquian.views.GroupView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_group_3"/>
 
 
             </LinearLayout>
@@ -203,25 +200,22 @@
             android:background="#11aaa1"
             android:gravity="center"
             android:orientation="vertical"
-            android:weightSum="9">
+            android:weightSum="3">
 
-            <LinearLayout style="@style/LinearVertical"/>
+            <com.nojsoft.conquian.views.GroupView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_group_1"/>
 
-            <LinearLayout style="@style/LinearVertical"/>
+            <com.nojsoft.conquian.views.GroupView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_group_2"/>
 
-            <LinearLayout style="@style/LinearVertical"/>
-
-            <LinearLayout style="@style/LinearVertical"/>
-
-            <LinearLayout style="@style/LinearVertical"/>
-
-            <LinearLayout style="@style/LinearVertical"/>
-
-            <LinearLayout style="@style/LinearVertical"/>
-
-            <LinearLayout style="@style/LinearVertical"/>
-
-            <LinearLayout style="@style/LinearVertical"/>
+            <com.nojsoft.conquian.views.GroupView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_group_3"/>
 
         </LinearLayout>
 

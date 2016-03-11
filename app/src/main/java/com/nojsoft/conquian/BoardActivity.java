@@ -157,7 +157,6 @@ public class BoardActivity extends AppCompatActivity implements View.OnTouchList
                 owner.setOnDragListener(this);
                 LinearLayout container = (LinearLayout) v;
                 container.addView(view);
-                container.setOnDragListener(null);
                 container.setBackgroundDrawable(normalShape);
                 view.setVisibility(View.VISIBLE);
                 gameValidator.validateGroups(players[myPlayerId].getTable());

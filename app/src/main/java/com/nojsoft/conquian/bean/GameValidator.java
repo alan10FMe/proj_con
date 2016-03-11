@@ -12,22 +12,22 @@ public class GameValidator {
 
     public static boolean validateGroups (Table table){
         boolean hasChanged = false;
-        LinearLayout [] layouts = table.getCards();
-        List <List<Integer>> cardGroups = getCardGroups(layouts); //TODO: se puede hacer sin generar otro lista? mismo caso que arriba\
-        //Validate if table contains at least 1 group with 3 cards
-        if(cardGroups.size() > 0){
-            //Checks if there are groups with the same numValue
-            hasChanged = checkSameNumGroups(layouts, cardGroups);
-            //If there was a change check if there are cards without group remaining
-            if(hasChanged) {
-                cardGroups = getCardGroups(layouts);
-            }
-            //If after the previous process there are still groups to check, validate straights
-            if (cardGroups.size() > 0) {
-                //Even if there are no Straights the previous changes, if any, must be reported
-                hasChanged = hasChanged || checkStraightGroups(layouts, cardGroups);
-            }
-        }
+//        LinearLayout [] layouts = table.getCards();
+//        List <List<Integer>> cardGroups = getCardGroups(layouts); //TODO: se puede hacer sin generar otro lista? mismo caso que arriba\
+//        //Validate if table contains at least 1 group with 3 cards
+//        if(cardGroups.size() > 0){
+//            //Checks if there are groups with the same numValue
+//            hasChanged = checkSameNumGroups(layouts, cardGroups);
+//            //If there was a change check if there are cards without group remaining
+//            if(hasChanged) {
+//                cardGroups = getCardGroups(layouts);
+//            }
+//            //If after the previous process there are still groups to check, validate straights
+//            if (cardGroups.size() > 0) {
+//                //Even if there are no Straights the previous changes, if any, must be reported
+//                hasChanged = hasChanged || checkStraightGroups(layouts, cardGroups);
+//            }
+//        }
         return hasChanged;
     }
 
