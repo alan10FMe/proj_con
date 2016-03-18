@@ -1,20 +1,25 @@
 package com.nojsoft.conquian.bean;
 
 import android.view.ViewGroup;
+
+import com.nojsoft.conquian.constants.CardConstants;
 import com.nojsoft.conquian.views.CardView;
+import com.nojsoft.conquian.views.GroupView;
+
+import java.security.acl.Group;
 
 /**
  * Created by jorge on 09/03/16.
  */
 public class GameValidator {
 
-    public static boolean validateGroup (ViewGroup group){
+    public static boolean validateGroup (GroupView group){
         boolean isValid = false;
         String flag = "sn";
         CardView currentCard;
         CardView previousCard;
         if (group.getChildCount() <= 1){
-            //reset flag
+            group.setGameType(CardConstants.GameType.NONE);
             return true;//first card so it's correct no matter what
         }
 
@@ -23,30 +28,29 @@ public class GameValidator {
             currentCard = (CardView) group.getChildAt(1);
             previousCard = (CardView) group.getChildAt(0);
             if (currentCard.getNumValue() == previousCard.getNumValue()) {
-                //set flag as same number
+                group.setGameType(CardConstants.GameType.SAME_KIND);
                 return true;
             }
             if (currentCard.getType().equals(previousCard.getType())) {
                 if ( Math.abs( currentCard.getNumValue() - currentCard.getNumValue()) == 1) {
-                    //set flag as straight
+                    group.setGameType(CardConstants.GameType.STRAIGHT);
                     return true;
                 }
             }
         }
 
         if (group.getChildCount() > 2) {
-            //getFlag
             currentCard = (CardView) group.getChildAt(group.getChildCount()-1);
             previousCard = (CardView) group.getChildAt(group.getChildCount()-2);
-            if (flag.equals("sn")){//if group of the same number
+            if (flag.equals(group.getGameType() == CardConstants.GameType.SAME_KIND)){
                 if (currentCard.getNumValue() == previousCard.getNumValue()) {
-                    //set flag as same number
+                    // Set cards as one group
                     return true;
                 }
             } else {
                 if (currentCard.getType().equals(previousCard.getType())) {
                     if ( Math.abs( currentCard.getNumValue() - currentCard.getNumValue()) == 1) {
-                        //set flag as straight
+                        // set cards as same group
                         return true;
                     }
                 }
