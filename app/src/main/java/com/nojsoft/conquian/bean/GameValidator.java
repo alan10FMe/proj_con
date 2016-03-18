@@ -1,5 +1,6 @@
 package com.nojsoft.conquian.bean;
 
+import android.util.Log;
 import android.view.ViewGroup;
 
 import com.nojsoft.conquian.constants.CardConstants;
@@ -34,7 +35,7 @@ public class GameValidator {
                 }
             }
             if (currentCard.getType().equals(previousCard.getType())) {
-                if ( Math.abs( currentCard.getNumValue() - currentCard.getNumValue()) == 1) {
+                if ( Math.abs(previousCard.getNumValue() - currentCard.getNumValue()) == 1) {
                     if ( group.getGameType() == CardConstants.GameType.NONE) {
                         group.setGameType(CardConstants.GameType.STRAIGHT);
                         return true;
