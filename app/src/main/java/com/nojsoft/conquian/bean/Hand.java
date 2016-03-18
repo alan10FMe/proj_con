@@ -39,6 +39,7 @@ public class Hand {
         for (int i = 0; i < linearHand.getChildCount(); i++) {
             cards[i] = (LinearLayout) linearHand.getChildAt(i);
             cardsView[i].setLocation(CardConstants.LOCATION_HAND);
+            cardsView[i].setPosition(i);
             if (!isPlayer) {
                 Utility.displayImageBack(cardsView[i]);
             }

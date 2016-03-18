@@ -125,25 +125,21 @@
                 android:layout_weight="1"
                 android:background="#111221"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:weightSum="3">
+                android:orientation="horizontal">
 
                 <com.nojsoft.conquian.views.GroupView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/background_group_1"/>
 
                 <com.nojsoft.conquian.views.GroupView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/background_group_2"/>
 
                 <com.nojsoft.conquian.views.GroupView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/background_group_3"/>
 
 

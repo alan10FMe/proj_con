@@ -150,16 +150,16 @@ public class BoardActivity extends AppCompatActivity implements View.OnTouchList
                 v.setBackgroundDrawable(normalShape);
                 break;
             case DragEvent.ACTION_DROP:
-                // Dropped, reassign View to ViewGroup
                 View view = (View) event.getLocalState();
-                ViewGroup owner = (ViewGroup) view.getParent();
-                owner.removeView(view);
-                owner.setOnDragListener(this);
-                LinearLayout container = (LinearLayout) v;
-                container.addView(view);
-                container.setBackgroundDrawable(normalShape);
-                view.setVisibility(View.VISIBLE);
-                gameValidator.validateGroups(players[myPlayerId].getTable());
+                if (true) {
+                    ViewGroup owner = (ViewGroup) view.getParent();
+                    owner.removeView(view);
+                    owner.setOnDragListener(this);
+                    LinearLayout container = (LinearLayout) v;
+                    container.addView(view);
+                    container.setBackgroundDrawable(normalShape);
+                    view.setVisibility(View.VISIBLE);
+                }
                 break;
             case DragEvent.ACTION_DRAG_ENDED:
                 v.setBackgroundDrawable(normalShape);
