@@ -1,9 +1,12 @@
 package com.nojsoft.conquian.Util;
 
 import android.content.Context;
+import android.view.ViewGroup;
 
 import com.nojsoft.conquian.R;
+import com.nojsoft.conquian.bean.Player;
 import com.nojsoft.conquian.views.CardView;
+import com.nojsoft.conquian.views.GroupView;
 
 /**
  * Created by alan on 3/7/16.
@@ -26,5 +29,12 @@ public class Utility {
      */
     public static void displayImageBack(CardView cardView) {
         cardView.setImageResource(R.drawable.backcard);
+    }
+
+    public static void displayGroups(GroupView groupView, Context context) {
+        ViewGroup.LayoutParams params = groupView.getLayoutParams();
+        params.height = 100;
+        params.width = 100;
+        groupView.setLayoutParams(params);
     }
 }

@@ -4,6 +4,7 @@ import android.content.ClipData;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.DragEvent;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
+import com.nojsoft.conquian.Util.Utility;
 import com.nojsoft.conquian.bean.Deck;
 import com.nojsoft.conquian.bean.GameValidator;
 import com.nojsoft.conquian.bean.Hand;
@@ -159,6 +161,7 @@ public class BoardActivity extends AppCompatActivity implements View.OnTouchList
                     LinearLayout container = (LinearLayout) v;
                     container.addView(view);
                     container.setBackgroundDrawable(normalShape);
+                    Utility.displayGroups((GroupView)container,context);
                     view.setVisibility(View.VISIBLE);
                 }
                 break;
