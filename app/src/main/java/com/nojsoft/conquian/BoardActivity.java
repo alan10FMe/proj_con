@@ -21,6 +21,7 @@ import com.nojsoft.conquian.bean.Table;
 import com.nojsoft.conquian.constants.CardConstants;
 import com.nojsoft.conquian.exception.NoMoreCardsException;
 import com.nojsoft.conquian.views.CardView;
+import com.nojsoft.conquian.views.GroupView;
 
 
 public class BoardActivity extends AppCompatActivity implements View.OnTouchListener, View.OnDragListener, View.OnClickListener {
@@ -151,7 +152,7 @@ public class BoardActivity extends AppCompatActivity implements View.OnTouchList
                 break;
             case DragEvent.ACTION_DROP:
                 View view = (View) event.getLocalState();
-                if (true) {
+                if (GameValidator.validateGroup((GroupView)v, (CardView)view)) {
                     ViewGroup owner = (ViewGroup) view.getParent();
                     owner.removeView(view);
                     owner.setOnDragListener(this);
