@@ -17,7 +17,7 @@ public class GameValidator {
         boolean isValid = false;
         CardView previousCard;
 
-        if (group.getChildCount() <= 1){
+        if (group.getChildCount() == 0){
             group.setGameType(CardConstants.GameType.NONE);
             return true;//first card so it's correct no matter what
         }
