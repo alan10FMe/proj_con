@@ -20,4 +20,8 @@ public class CardConstants {
     public static final String SUBGROUP_ONE = "1";
     public static final String SUBGROUP_TWO = "2";
     public static final String SUBGROUP_THREE = "3";
+
+    public static enum GameType {
+        STRAIGHT, NONE, SAME_KIND
+    }
 }
