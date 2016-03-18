@@ -53,7 +53,7 @@ public class GameValidator {
         boolean isValid = true;
         GroupView groups [] = table.getGroups();
         for (GroupView group : groups) {
-            if (group != null){
+            if (group.getChildCount() > 0){
                 totalCards += group.getChildCount();
                 isValid = isValid && (group.getChildCount() >= 3);
             }
