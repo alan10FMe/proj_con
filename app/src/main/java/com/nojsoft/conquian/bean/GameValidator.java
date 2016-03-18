@@ -49,9 +49,16 @@ public class GameValidator {
     }
 
     public static boolean validateGame (Table table){
-        boolean isValid = false;
-
-        return isValid;
+        int totalCards = 0;
+        boolean isValid = true;
+        GroupView groups [] = table.getGroups();
+        for (GroupView group : groups) {
+            if (group != null){
+                totalCards += group.getChildCount();
+                isValid = isValid && (group.getChildCount() >= 3);
+            }
+        }
+        return (totalCards == 9) && isValid;
     }
 
 }
