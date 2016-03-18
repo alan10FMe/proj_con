@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
+import com.nojsoft.conquian.constants.CardConstants;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,7 @@ public class GroupView extends LinearLayout {
 
     private List<CardView> cards = new ArrayList<CardView>();
     private int idGroup;
+    private CardConstants.GameType gameType = CardConstants.GameType.NONE;
 
     public GroupView(Context context) {
         super(context, null);
@@ -23,6 +26,14 @@ public class GroupView extends LinearLayout {
 
     public GroupView(Context context, AttributeSet attrs) {
         super(context, attrs);
+    }
+
+    public void setGameType (CardConstants.GameType gameType){
+        this.gameType = gameType;
+    }
+
+    public CardConstants.GameType getGameType () {
+        return this.gameType;
     }
 
     public void setCard(CardView cardView) {
