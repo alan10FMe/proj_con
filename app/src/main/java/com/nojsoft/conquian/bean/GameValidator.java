@@ -13,9 +13,8 @@ import java.security.acl.Group;
  */
 public class GameValidator {
 
-    public static boolean validateGroup (GroupView group){
+    public static boolean validateGroup (GroupView group, CardView currentCard){
         boolean isValid = false;
-        CardView currentCard;
         CardView previousCard;
 
         if (group.getChildCount() <= 1){
@@ -23,9 +22,8 @@ public class GameValidator {
             return true;//first card so it's correct no matter what
         }
 
-        if (group.getChildCount() >= 2){
-            currentCard = (CardView) group.getChildAt(group.getChildCount()-1);
-            previousCard = (CardView) group.getChildAt(group.getChildCount()-2);
+        if (group.getChildCount() >= 1){
+            previousCard = (CardView) group.getChildAt(group.getChildCount()-1);
             if (currentCard.getNumValue() == previousCard.getNumValue()) {
                 if ( group.getGameType() == CardConstants.GameType.NONE) {
                     group.setGameType(CardConstants.GameType.SAME_KIND);
